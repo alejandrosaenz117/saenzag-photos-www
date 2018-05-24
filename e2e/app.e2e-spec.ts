@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('www App', () => {
+describe('saenzag-photos-www App', () => {
   let page: AppPage;
 
   beforeEach(() => {
