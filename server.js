@@ -11,6 +11,8 @@ var nosniff = require('dont-sniff-mimetype')
 const api = require('./server/routes/api')
 const app = express()
 
+app.use(express.static('assets'))
+
 app.use(cors())
 
 app.use(hsts({

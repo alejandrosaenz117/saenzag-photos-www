@@ -18,11 +18,15 @@ export class AppService {
       map(res => res.json()));
   }
 
-  // Get all posts from the API
   getAllPosts() {
-    console.log("here3")
-    return this.http.get(`${this.api}/api/posts`).pipe(
-      map(res => res.json()));
+    return this.http.get(`${this.api}/api/posts`)
+    .pipe(map(res => res.json()));
+  }
+
+  getLSimages() {
+    let images: Array<string>;
+    return this.http.get(`${this.api}/assets/gallery_landscape`)
+        .pipe(map(res => res.json()));
   }
 
 }
