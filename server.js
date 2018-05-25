@@ -3,13 +3,18 @@ var cors = require('cors')
 const path = require('path')
 const http = require('http')
 const bodyParser = require('body-parser')
+
+//Security 
 const helmet  = require('helmet')
 var hsts = require('hsts')
 var xssFilter = require('x-xss-protection')
 var nosniff = require('dont-sniff-mimetype')
 
+
 const api = require('./server/routes/api')
 const app = express()
+
+app.use(express.static('assets'))
 
 app.use(cors())
 
@@ -23,7 +28,7 @@ app.use(nosniff())
 
 //Remove x-powered-by response header to stop 
 //from disclosing server information
-app.disable('x-powered-by');
+app.disable('x-powered-by')
 //helps you secure app by setting various HTTP headers.
 //https://www.npmjs.com/package/helmet
 app.use(helmet({

@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+
+import { HttpClient } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
 
 import { AppService } from './app.service';
 
@@ -10,22 +15,31 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 
 const ROUTES = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'landscape',
     pathMatch: 'full'
   },
   {
-    path: 'posts',
-    component: PostsComponent
+    path: 'landscape',
+    component: CarouselComponent
   },
   {
-    path: '',
-    component: AppComponent
-  }
+    path: 'film',
+    component: CarouselComponent
+  },
+  {
+    path: 'maternity',
+    component: CarouselComponent
+  },
+  {
+    path: 'night_colors',
+    component: CarouselComponent
+  },
 ];
 
 @NgModule({
@@ -33,15 +47,18 @@ const ROUTES = [
     AppComponent,
     PostsComponent,
     NavigationComponent,
-    FooterComponent
+    FooterComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, {useHash: true})
+    HttpClientModule,
+    RouterModule.forRoot(ROUTES, {useHash: true}),
+    NgbModule.forRoot()
   ],
-  providers: [ AppService ],
+  providers: [ AppService, HttpClient ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
