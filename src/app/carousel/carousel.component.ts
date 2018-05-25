@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-carousel',
@@ -9,19 +10,58 @@ import {map} from 'rxjs/operators';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-  images: Array<string>;
+  images: any[];
+  gallery: String;
 
-  constructor(private appService: AppService, private http: HttpClient) { }
-
-  ngOnInit() {
-    this.http.get('https://picsum.photos/list')
-        .pipe(map((images: Array<{id: number}>) => this._randomImageUrls(images)))
-        .subscribe(images => this.images = images);
+  constructor(private appService: AppService, 
+              private http: HttpClient, 
+              private activatedRoute: ActivatedRoute) { 
+    
+              this.gallery = activatedRoute.routeConfig.path
   }
 
-  private _randomImageUrls(images: Array<{id: number}>): Array<string> {
-    return [1, 2, 3].map(() => {
-      const randomId = images[Math.floor(Math.random() * images.length)].id;
-      return `https://picsum.photos/900/500?image=${randomId}`;
-    });}
+  ngOnInit() {
+    switch(this.gallery) {
+      case "landscape":
+        this.getLandscapeGallery()
+        break;
+      case "film":
+        this.getFilmGallery()
+        break;
+      case "maternity":
+        this.getMaternityGallery()
+        break;
+      case "night_colors":
+        this.getNightColorsGallery()
+        break;  
+    }
+  }
+
+  getLandscapeGallery() {
+    this.appService.getLandscapeGallery()
+      .subscribe(result => {
+        this.images = result.json();
+      })
+  }
+
+  getFilmGallery() {
+    this.appService.getFilmGallery()
+      .subscribe(result => {
+        this.images = result.json();
+      })
+  }
+
+  getMaternityGallery() {
+    this.appService.getMaternityGallery()
+      .subscribe(result => {
+        this.images = result.json();
+      })
+  }
+
+  getNightColorsGallery() {
+    this.appService.getNightColorsGallery()
+      .subscribe(result => {
+        this.images = result.json();
+      })
+  }
 }

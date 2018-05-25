@@ -21,21 +21,25 @@ import { CarouselComponent } from './carousel/carousel.component';
 const ROUTES = [
   {
     path: '',
-    redirectTo: '',
+    redirectTo: 'landscape',
     pathMatch: 'full'
   },
   {
-    path: 'posts',
-    component: PostsComponent
-  },
-  {
-    path: '',
-    component: AppComponent
-  },
-  {
-    path: 'gallery',
+    path: 'landscape',
     component: CarouselComponent
-  }
+  },
+  {
+    path: 'film',
+    component: CarouselComponent
+  },
+  {
+    path: 'maternity',
+    component: CarouselComponent
+  },
+  {
+    path: 'night_colors',
+    component: CarouselComponent
+  },
 ];
 
 @NgModule({
