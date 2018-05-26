@@ -12,10 +12,10 @@ import { HttpHandler } from '@angular/common/http';
 import { AppService } from './app.service';
 
 import { AppComponent } from './app.component';
-import { PostsComponent } from './posts/posts.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { VideographyComponent } from './videography/videography.component';
 
 
 const ROUTES = [
@@ -40,15 +40,19 @@ const ROUTES = [
     path: 'night_colors',
     component: CarouselComponent
   },
+  {
+    path: 'videography',
+    component: VideographyComponent
+  }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent,
     NavigationComponent,
     FooterComponent,
     CarouselComponent,
+    VideographyComponent,
   ],
   imports: [
     BrowserModule,
