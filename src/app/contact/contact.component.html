@@ -1,0 +1,30 @@
+<div class="container col-md-6">
+    <form (ngSubmit)="onSubmit()" #contactUsForm="ngForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input [(ngModel)]="contactModel.firstName" name="firstName" type="text" class="form-control" id="firstName" required>
+      </div>
+
+      <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input [(ngModel)]="contactModel.lastName" name="lastName" type="text" class="form-control" id="lastName" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input [(ngModel)]="contactModel.email" name="email" type="text" class="form-control" id="email" required>
+      </div>
+
+      <div class="form-group">
+          <label for="subject">Subject</label>
+          <input [(ngModel)]="contactModel.subject" name="subject" type="text" class="form-control" id="subject" required>
+      </div>
+
+      <div class="form-group">
+          <label for="message">Message</label>
+          <textarea [(ngModel)]="contactModel.message" name="message" type="textarea" class="form-control" id="message" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!contactUsForm.form.valid">Submit</button>
+    </form>
+</div>
