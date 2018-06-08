@@ -10,39 +10,26 @@ var hsts = require('hsts')
 var xssFilter = require('x-xss-protection')
 var nosniff = require('dont-sniff-mimetype')
 
-
 const api = require('./server/routes/api')
 const app = express()
 
 app.use(express.static('assets'))
 
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cors())
-
 app.use(hsts({
   maxAge: 15552000  // 180 days in seconds
 }))
-
 app.use(xssFilter())
-
 app.use(nosniff())
-
-//Remove x-powered-by response header to stop 
-//from disclosing server information
 app.disable('x-powered-by')
-//helps you secure app by setting various HTTP headers.
-//https://www.npmjs.com/package/helmet
 app.use(helmet({
     noCache: true
 }))
-
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
-
 app.use(express.static(path.join(__dirname, 'dist')))
-
 // Set our api routes
 app.use('/api', api)
-
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'dist/index.html'))

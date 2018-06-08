@@ -1,5 +1,5 @@
 <div class="container col-md-6">
-    <form (ngSubmit)="onSubmit()" #contactUsForm="ngForm">
+    <form (ngSubmit)="onSubmit(contactModel)" #contactUsForm="ngForm">
       <div class="form-group">
         <label for="firstName">First Name</label>
         <input [(ngModel)]="contactModel.firstName" name="firstName" type="text" class="form-control" id="firstName" required>

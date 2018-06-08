@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 import { Contact } from '../contact';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
@@ -11,14 +13,14 @@ export class ContactComponent implements OnInit {
   contactModel = {};
   submittied = false;
 
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
+  onSubmit(contact: Contact) {
     this.submittied = true;
-    console.log(this.contactModel) //testing
+    this.appService.submitContactForm(contact).subscribe((res)=> console.log())
   }
 
 }
