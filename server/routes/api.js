@@ -80,22 +80,20 @@ router.post('/contactFormSubmit', function(req, res){
   var transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
-        user: config.gmail.user_name, // Your email id
-        pass: config.gmail.password // Your password
+        user: config.gmail.user_name,
+        pass: config.gmail.password
     }
   })
   var mailOptions = {
-    from: config.gmail.from, // sender address
-    to: config.gmail.mailTo, // list of receivers
+    from: config.gmail.from,
+    to: config.gmail.mailTo,
     subject: 'New Contact Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
-    text: "test"
+    text: `From: ${req.body.firstName} ${req.body.lastName}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
   }
   transporter.sendMail(mailOptions, function(error, info){
     if(error){
-        //console.log(error);
         res.json({yo: 'error'});
     }else{
-        //console.log('Message sent: ' + info.response);
         res.json({yo: info.response});
     };
   })

@@ -11,7 +11,7 @@ import { NgForm } from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
   contactModel = {};
-  submittied = false;
+  submitted = false
 
   constructor(private appService: AppService) { }
 
@@ -19,7 +19,7 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit(contact: Contact) {
-    this.submittied = true;
+    this.submitted = true;
     this.appService.submitContactForm(contact).subscribe((res)=> console.log())
   }
 
