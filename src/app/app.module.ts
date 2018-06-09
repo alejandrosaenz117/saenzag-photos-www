@@ -17,6 +17,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { VideographyComponent } from './videography/videography.component';
 import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 
 
 const ROUTES = [
@@ -48,6 +49,10 @@ const ROUTES = [
   {
     path: 'about',
     component: AboutComponent
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
   }
 ];
 
@@ -59,6 +64,7 @@ const ROUTES = [
     CarouselComponent,
     VideographyComponent,
     AboutComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

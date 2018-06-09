@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs')
 var path = require('path');
+const nodemailer = require('nodemailer')
+const config = require('../../config');
 
 // declare axios for making http requests
 const axios = require('axios');
@@ -72,6 +74,29 @@ router.get('/gallery_night_colors', (req, res) => {
   //Removes .DS_Store
   images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
   res.status(200).json(images)
+})
+
+router.post('/contactFormSubmit', function(req, res){
+  var transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: config.gmail.user_name,
+        pass: config.gmail.password
+    }
+  })
+  var mailOptions = {
+    from: config.gmail.from,
+    to: config.gmail.mailTo,
+    subject: 'New Contact Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
+    text: `From: ${req.body.firstName} ${req.body.lastName}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
+  }
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        res.json({yo: 'error'});
+    }else{
+        res.json({yo: info.response});
+    };
+  })
 })
 
 module.exports = router;

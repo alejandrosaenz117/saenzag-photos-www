@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { map, filter, scan } from 'rxjs/operators';
+import { map, filter, scan, catchError } from 'rxjs/operators';
+import { Contact } from './contact';
+import { NgForm } from '@angular/forms';
 
 @Injectable()
 export class AppService {
@@ -33,6 +35,10 @@ export class AppService {
 
   getNightColorsGallery() {
     return this.http.get(`${this.api}/gallery_night_colors`)
+  }
+
+  submitContactForm(contactForm: Contact) {
+    return this.http.post(`${this.api}/contactFormSubmit`, contactForm)
   }
 
 }

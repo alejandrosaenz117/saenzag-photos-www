@@ -1,0 +1,29 @@
+<br/>
+<div class="container col-md-6">
+    <h1>Please fill out the form with any questions or inquiries you have. </h1>
+
+    <form (ngSubmit)="onSubmit(contactModel); contactUsForm.reset()" #contactUsForm="ngForm">
+      <div class="row">
+        <div class="col">
+            <input [(ngModel)]="contactModel.firstName" name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" required>
+        </div>
+        <div class="col">
+            <input [(ngModel)]="contactModel.lastName" name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <input [(ngModel)]="contactModel.email" name="email" type="email" class="form-control" id="email" email placeholder="Email" required>
+      </div>
+
+      <div class="form-group">
+          <input [(ngModel)]="contactModel.subject" name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required>
+      </div>
+
+      <div class="form-group">
+          <textarea [(ngModel)]="contactModel.message" name="message" type="textarea" class="form-control" id="message" placeholder="Message" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!contactUsForm.form.valid">Submit</button>
+    </form>
+</div>
