@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "client": "ng serve",
-    "server": "ng build && nodemon server.js",
+    "server": "ng build --prod && nodemon server.js",
     "start": "npm-run-all -p client server",
     "build": "ng build --prod",
     "test": "ng test",

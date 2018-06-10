@@ -10,7 +10,7 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  contactModel = {};
+  public contactModel: Contact = new Contact("", "", "", "", "")
   submitted = false
 
   constructor(private appService: AppService) { }
