@@ -43,6 +43,10 @@ const ROUTES = [
     component: CarouselComponent
   },
   {
+    path: 'family_portraits',
+    component: CarouselComponent
+  },
+  {
     path: 'videography',
     component: VideographyComponent
   },

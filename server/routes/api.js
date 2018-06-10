@@ -76,6 +76,17 @@ router.get('/gallery_night_colors', (req, res) => {
   res.status(200).json(images)
 })
 
+router.get('/gallery_family_portraits', (req, res) => {
+  //maybe take in a string to determine which gallery will get returned
+  images = [];
+  fs.readdirSync(assets + '/gallery_family_portraits').forEach(file => {
+      images.push('../../assets/gallery_family_portraits/' + file)
+  })
+  //Removes .DS_Store
+  images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+  res.status(200).json(images)
+})
+
 router.post('/contactFormSubmit', function(req, res){
   var transporter = nodemailer.createTransport({
     service: "Gmail",

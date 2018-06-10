@@ -34,6 +34,9 @@ export class CarouselComponent implements OnInit {
       case "night_colors":
         this.getNightColorsGallery()
         break;  
+      case "family_portraits":
+        this.getFamilyPortraits()
+        break;
     }
   }
 
@@ -60,6 +63,13 @@ export class CarouselComponent implements OnInit {
 
   getNightColorsGallery() {
     this.appService.getNightColorsGallery()
+      .subscribe(result => {
+        this.images = result.json();
+      })
+  }
+
+  getFamilyPortraits() {
+    this.appService.getFamilyPortraits()
       .subscribe(result => {
         this.images = result.json();
       })

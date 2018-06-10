@@ -37,6 +37,10 @@ export class AppService {
     return this.http.get(`${this.api}/gallery_night_colors`)
   }
 
+  getFamilyPortraits() {
+    return this.http.get(`${this.api}/gallery_family_portraits`)
+  }
+
   submitContactForm(contactForm: Contact) {
     return this.http.post(`${this.api}/contactFormSubmit`, contactForm)
   }
