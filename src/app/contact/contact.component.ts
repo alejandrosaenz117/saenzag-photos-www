@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 
 import { Contact } from '../contact';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-contact',
