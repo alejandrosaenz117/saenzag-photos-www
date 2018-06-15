@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit {
-  images: any[];
+  images: String[];
   gallery: String;
 
   constructor(private appService: AppService, 
@@ -42,36 +42,26 @@ export class CarouselComponent implements OnInit {
 
   getLandscapeGallery() {
     this.appService.getLandscapeGallery()
-      .subscribe(result => {
-        this.images = result.json();
-      })
+      .subscribe(result => this.images = result)
   }
 
   getFilmGallery() {
     this.appService.getFilmGallery()
-      .subscribe(result => {
-        this.images = result.json();
-      })
+      .subscribe(result => this.images = result)
   }
 
   getMaternityGallery() {
     this.appService.getMaternityGallery()
-      .subscribe(result => {
-        this.images = result.json();
-      })
+      .subscribe(result => this.images = result)
   }
 
   getNightColorsGallery() {
     this.appService.getNightColorsGallery()
-      .subscribe(result => {
-        this.images = result.json();
-      })
+      .subscribe(result => this.images = result)
   }
 
   getFamilyPortraits() {
     this.appService.getFamilyPortraits()
-      .subscribe(result => {
-        this.images = result.json();
-      })
+      .subscribe(result => this.images = result)
   }
 }
