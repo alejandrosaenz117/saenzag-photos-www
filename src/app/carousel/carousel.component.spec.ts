@@ -5,7 +5,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { CarouselComponent } from './carousel.component';
-import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 
 describe('CarouselComponent', () => {
@@ -43,7 +43,7 @@ describe('CarouselComponent', () => {
       imports: [
         NgbModule,
         HttpClientTestingModule,
-        RouterModule.forRoot(ROUTES, {useHash: true}),
+        RouterTestingModule.withRoutes(ROUTES, {useHash: true}),
       ],
       providers: [
         {provide: AppService, useValue: appServiceStub },

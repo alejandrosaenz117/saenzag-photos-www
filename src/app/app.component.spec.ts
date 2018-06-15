@@ -1,4 +1,5 @@
 import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
@@ -7,7 +8,6 @@ import { VideographyComponent } from './videography/videography.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 
-import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { AppService } from './app.service';
@@ -68,7 +68,7 @@ describe('AppComponent', () => {
         ContactComponent
       ],
       imports: [
-        RouterModule.forRoot(ROUTES, {useHash: true}),
+        RouterTestingModule.withRoutes(ROUTES, {useHash: true}),
         NgbModule,
         FormsModule
       ],

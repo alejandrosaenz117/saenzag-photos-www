@@ -26,6 +26,9 @@ export class AppService {
 */
   getLandscapeGallery() {
     return this.http.get<String[]>(`${this.api}/gallery_landscape`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   getFilmGallery() {
