@@ -34,13 +34,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-/src/assets/about/*
-/src/assets/gallery_family_portraits/*
-/src/assets/gallery_film/*
-/src/assets/gallery_landscape/*
-/src/assets/gallery_maternity/*
-/src/assets/gallery_night_colors/*
-
+/src/assets
 
 # e2e
 /e2e/*.js
