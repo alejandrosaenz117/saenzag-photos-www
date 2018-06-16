@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ContactComponent } from './contact.component';
 import { AppService } from '../app.service';
@@ -14,7 +14,7 @@ describe('ContactComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ContactComponent ],
       imports: [
-        FormsModule
+        ReactiveFormsModule
       ],
       providers: [
         {provide: AppService, useValue: appServiceStub }
