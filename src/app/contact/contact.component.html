@@ -1,29 +1,31 @@
 <br/>
 <div class="container col-md-6">
     <h1>Please fill out the form with any questions or inquiries you have. </h1>
-
-    <form (ngSubmit)="onSubmit(contactModel); contactUsForm.reset()" #contactUsForm="ngForm">
-      <div class="row">
-        <div class="col">
-            <input [(ngModel)]="contactModel.firstName" name="firstName" type="text" class="form-control" id="firstName" placeholder="First Name" required>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)">
+        <div class="row">
+            <div class="col">
+                <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+                <div *ngIf="contactForm.controls['firstName'].errors && !contactForm.controls['firstName'].pristine" class="alert alert-danger">First Name is Required</div>
+            </div>
+            <div class="col">
+                <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+                <div *ngIf="contactForm.controls['lastName'].errors && !contactForm.controls['lastName'].pristine" class="alert alert-danger">Last Name is Required</div>
+            </div>
         </div>
-        <div class="col">
-            <input [(ngModel)]="contactModel.lastName" name="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+        <br/>
+        <div class="form-group">
+            <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
+            <div *ngIf="contactForm.controls['email'].errors && !contactForm.controls['email'].pristine" class="alert alert-danger">Email is Required</div>
         </div>
-      </div>
-      <br/>
-      <div class="form-group">
-        <input [(ngModel)]="contactModel.email" name="email" type="email" class="form-control" id="email" email placeholder="Email" required>
-      </div>
+        <div class="form-group">
+            <input formControlName="subject" type="text" class="form-control" id="subject" placeholder="Subject">
+            <div *ngIf="contactForm.controls['subject'].errors && !contactForm.controls['subject'].pristine" class="alert alert-danger">Subject is Required</div>
+        </div>
+        <div class="form-group">
+            <textarea formControlName="message" type="textarea" class="form-control" id="message" placeholder="Message"></textarea>
+            <div *ngIf="contactForm.controls['message'].errors && !contactForm.controls['message'].pristine" class="alert alert-danger">Message is Required</div>
+        </div>
 
-      <div class="form-group">
-          <input [(ngModel)]="contactModel.subject" name="subject" type="text" class="form-control" id="subject" placeholder="Subject" required>
-      </div>
-
-      <div class="form-group">
-          <textarea [(ngModel)]="contactModel.message" name="message" type="textarea" class="form-control" id="message" placeholder="Message" required></textarea>
-      </div>
-
-      <button type="submit" class="btn btn-success" [disabled]="!contactUsForm.form.valid">Submit</button>
+        <button [disabled]="!contactForm.valid" type="submit" class="btn btn-success">Submit</button>
     </form>
 </div>

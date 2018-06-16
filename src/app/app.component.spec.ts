@@ -9,7 +9,7 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
 
 
@@ -70,7 +70,7 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule.withRoutes(ROUTES, {useHash: true}),
         NgbModule,
-        FormsModule
+        ReactiveFormsModule
       ],
       providers:    [ 
         { provide: AppService, useValue: appServiceStub } 
