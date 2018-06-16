@@ -36,7 +36,14 @@ export class ContactComponent implements OnChanges {
     this.contactModel = contact.value;
     this.appService.submitContactForm(this.contactModel)
       //TODO:  Create success message!
-      .subscribe((res) => console.log(''))
+      .subscribe(
+        success => {
+          return "Form submitted!";
+        },
+        error => {
+          return "There was an error processing your request! Please try again";
+        }
+      )
     this.contactForm.reset();
   }
 
