@@ -38,10 +38,10 @@ export class ContactComponent implements OnChanges {
       //TODO:  Create success message!
       .subscribe(
         success => {
-          return "Form submitted!";
+          alert("Thank you!  We will review your submission and get back to you ASAP!")
         },
         error => {
-          return "There was an error processing your request! Please try again";
+          alert("There was an error processing your request! Please try again");
         }
       )
     this.contactForm.reset();

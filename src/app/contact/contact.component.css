@@ -8,3 +8,12 @@ h1 {
     padding: 20px;
     color: gray;
 }
+
+.alert-danger {
+    margin: 0px;
+}
+
+.alert {
+    padding: 0;
+    padding-left: 10px;
+}

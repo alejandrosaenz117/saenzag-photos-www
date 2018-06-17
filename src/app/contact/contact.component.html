@@ -5,25 +5,25 @@
         <div class="row">
             <div class="col">
                 <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
-                <div *ngIf="contactForm.controls['firstName'].errors && !contactForm.controls['firstName'].pristine" class="alert alert-danger">First Name is Required</div>
+                <div *ngIf="contactForm.controls['firstName'].errors && !contactForm.controls['firstName'].pristine" class="alert alert-danger">First Name is required</div>
             </div>
             <div class="col">
                 <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
-                <div *ngIf="contactForm.controls['lastName'].errors && !contactForm.controls['lastName'].pristine" class="alert alert-danger">Last Name is Required</div>
+                <div *ngIf="contactForm.controls['lastName'].errors && !contactForm.controls['lastName'].pristine" class="alert alert-danger">Last Name is required</div>
             </div>
         </div>
         <br/>
         <div class="form-group">
             <input formControlName="email" type="email" class="form-control" id="email" placeholder="Email">
-            <div *ngIf="contactForm.controls['email'].errors && !contactForm.controls['email'].pristine" class="alert alert-danger">Email is Required</div>
+            <div *ngIf="contactForm.controls['email'].errors?.email && !contactForm.controls['email'].pristine" class="alert alert-danger">Email not valid</div>
         </div>
         <div class="form-group">
             <input formControlName="subject" type="text" class="form-control" id="subject" placeholder="Subject">
-            <div *ngIf="contactForm.controls['subject'].errors && !contactForm.controls['subject'].pristine" class="alert alert-danger">Subject is Required</div>
+            <div *ngIf="contactForm.controls['subject'].errors && !contactForm.controls['subject'].pristine" class="alert alert-danger">Subject is required</div>
         </div>
         <div class="form-group">
             <textarea formControlName="message" type="textarea" class="form-control" id="message" placeholder="Message"></textarea>
-            <div *ngIf="contactForm.controls['message'].errors && !contactForm.controls['message'].pristine" class="alert alert-danger">Message is Required</div>
+            <div *ngIf="contactForm.controls['message'].errors && !contactForm.controls['message'].pristine" class="alert alert-danger">Message is required</div>
         </div>
 
         <button [disabled]="!contactForm.valid" type="submit" class="btn btn-success">Submit</button>
