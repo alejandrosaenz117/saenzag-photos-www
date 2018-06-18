@@ -16,6 +16,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { VideographyComponent } from './videography/videography.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProservComponent } from './proserv/proserv.component';
 
 
 const ROUTES = [
@@ -55,6 +56,10 @@ const ROUTES = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'proserv',
+    component: ProservComponent
   }
 ];
 
@@ -67,6 +72,7 @@ const ROUTES = [
     VideographyComponent,
     AboutComponent,
     ContactComponent,
+    ProservComponent,
   ],
   imports: [
     BrowserModule,
