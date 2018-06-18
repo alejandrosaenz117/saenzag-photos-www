@@ -1,0 +1,43 @@
+h1 {
+    font-family: Verdana, Geneva, sans-serif;
+    text-transform: none;
+    letter-spacing: .04em;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    padding: 20px;
+    color: gray;
+}
+
+h2 {
+    font-family: Verdana, Geneva, sans-serif;
+    text-transform: none;
+    letter-spacing: .04em;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    padding: 10px;
+    color: lightgray;
+}
+
+#proserv-card {
+    height: 350px;
+    width: 500px;
+    object-fit: cover;
+    padding: 15px;
+}
+
+p, ul, li {
+    font-family: Verdana, Geneva, sans-serif;
+    text-transform: none;
+    letter-spacing: .04em;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: gray;
+}
+
+.btn  {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 13px;
+}
