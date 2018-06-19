@@ -10,7 +10,8 @@ import { Contact } from '../contact';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnChanges {
-  public contactModel: Contact = new Contact("", "", "", "", "")
+  //public contactModel: Contact = new Contact("", "", "", "", "")
+  public contactModel: Contact;
   submitted = false
   contactForm: FormGroup;
 

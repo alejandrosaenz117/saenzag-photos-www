@@ -110,4 +110,34 @@ router.post('/contactFormSubmit', function(req, res){
   })
 })
 
+router.post('/corpEventFormSubmit', function(req, res){
+  var transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: config.gmail.user_name,
+        pass: config.gmail.password
+    }
+  })
+  var mailOptions = {
+    from: config.gmail.from,
+    to: config.gmail.mailTo,
+    subject: 'New Corporate Event Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
+    text:  `From: ${req.body.firstName} ${req.body.lastName}
+          \nEmail: ${req.body.email}
+          \nSubject: ${req.body.phone}
+          \nEvent Title: ${req.body.eventTitle}
+          \nStart Date: ${req.body.startDate}
+          \nEnd Date: ${req.body.endDate}
+          \nWebsite: ${req.body.website}
+          \nAdditional Info: ${req.body.additionalInfo}`
+  }
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        res.json({yo: 'error'});
+    }else{
+        res.json({yo: info.response});
+    };
+  })
+})
+
 module.exports = router;

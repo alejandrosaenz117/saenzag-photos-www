@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, filter, scan, catchError } from 'rxjs/operators';
 import { Contact } from './contact';
-import { NgForm } from '@angular/forms';
+import { CorporateEventInquiryForm } from './corporate-event-inquiry-form';
 import { HttpErrorResponse} from '@angular/common/http';
 
 
@@ -52,6 +52,10 @@ export class AppService {
 
   submitContactForm(contactForm: Contact) {
     return this.http.post(`${this.api}/contactFormSubmit`, contactForm)
+  }
+
+  submitCorporateEventForm(corpEventForm: CorporateEventInquiryForm) {
+    return this.http.post(`${this.api}/corpEventFormSubmit`, corpEventForm)
   }
 
   private handleError(error: HttpErrorResponse) {
