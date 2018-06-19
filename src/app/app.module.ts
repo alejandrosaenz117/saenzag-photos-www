@@ -17,6 +17,9 @@ import { VideographyComponent } from './videography/videography.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { ProservComponent } from './proserv/proserv.component';
+import { CorporateEventComponent } from './corporate-event/corporate-event.component';
+import { CoupleEngagementComponent } from './couple-engagement/couple-engagement.component';
+import { FamilyPortraitComponent } from './family-portrait/family-portrait.component';
 
 
 const ROUTES = [
@@ -60,7 +63,19 @@ const ROUTES = [
   {
     path: 'proserv',
     component: ProservComponent
-  }
+  },
+  {
+    path: 'proserv/corp-event-inquiry',
+    component: CorporateEventComponent
+  },
+  {
+    path: 'proserv/couple-engagement',
+    component: CoupleEngagementComponent
+  },
+  {
+    path: 'proserv/family-portrait',
+    component: FamilyPortraitComponent
+  },
 ];
 
 @NgModule({
@@ -73,6 +88,9 @@ const ROUTES = [
     AboutComponent,
     ContactComponent,
     ProservComponent,
+    CorporateEventComponent,
+    CoupleEngagementComponent,
+    FamilyPortraitComponent,
   ],
   imports: [
     BrowserModule,
