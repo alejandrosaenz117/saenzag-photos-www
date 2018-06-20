@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
 import { CorporateEventInquiryForm } from '../corporate-event-inquiry-form';
+//import { validateDates } from '../validators/date.validator';
 
 
 @Component({
@@ -36,6 +37,7 @@ export class CorporateEventComponent implements OnChanges {
       additionalInfo: ['']
     })
   }
+  
 
   rebuildForm() {
     this.corpEventForm.reset({

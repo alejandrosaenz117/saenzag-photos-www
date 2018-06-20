@@ -35,6 +35,7 @@ yarn-error.log
 testem.log
 /typings
 /src/assets
+/src/app/validators
 
 # e2e
 /e2e/*.js

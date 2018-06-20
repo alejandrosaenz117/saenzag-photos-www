@@ -42,6 +42,9 @@
         <div class="col">
           <input formControlName="startDate" type="date" class="form-control" id="startDate" placeholder="Start Date">
           <div *ngIf="(corpEventForm.controls['startDate'].errors && !corpEventForm.controls['startDate'].pristine)" class="alert alert-danger">Start Date is required</div>
+          <div *ngIf="(corpEventForm.controls['startDate'].value > corpEventForm.controls['endDate'].value ) && !corpEventForm.controls['endDate'].pristine" class="alert alert-danger">
+            Start Date must come before End Date
+          </div>
         </div>
         <div class="col">
           <input formControlName="endDate" type="date" class="form-control" id="endDate" placeholder="End Date">
