@@ -4,8 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CorporateEventComponent } from './corporate-event.component';
 import { AppService } from '../app.service';
 
-
-
 describe('CorporateEventComponent', () => {
   let component: CorporateEventComponent;
   let fixture: ComponentFixture<CorporateEventComponent>;
@@ -89,14 +87,13 @@ describe('CorporateEventComponent', () => {
     errors = endDate.errors || {};
     expect(errors['required']).toBeTruthy(); 
   });
-/* TODO:  Validate startDate <= End Date
+
   it('startDate is before endDate', () => {
     let startDate = new Date(2018);
     let endDate = new Date(2019);
     component.corpEventForm.controls['startDate'].setValue(startDate);
     component.corpEventForm.controls['endDate'].setValue(endDate);
-    if(component.corpEventForm.controls['startDate'].value <= component.corpEventForm.controls['endDate'].value )
-      expect(component.corpEventForm.valid).toBeTruthy();
+    expect(component.validateDates(component.corpEventForm)).toBeTruthy();
   });
 
   it('startDate is after endDate', () => {
@@ -104,21 +101,34 @@ describe('CorporateEventComponent', () => {
     let endDate = new Date(2018);
     component.corpEventForm.controls['startDate'].setValue(startDate);
     component.corpEventForm.controls['endDate'].setValue(endDate);
-    if(component.corpEventForm.controls['startDate'].value > component.corpEventForm.controls['endDate'].value)
-      expect(component.corpEventForm.valid).toBeFalsy();
+    expect(component.validateDates(component.corpEventForm)).toBeFalsy();
   });
-*/
-  it('submitting a form', () => {
+
+  it('submitting a form with all required fields', () => {
     let startDate = new Date(2018);
     let endDate = new Date(2018);
     //Expect the form initially to be invalid
     expect(component.corpEventForm.valid).toBeFalsy();
-    //Fill in form
+    //Fill in form with only required fields
     component.corpEventForm.controls['firstName'].setValue("Alejandro");
     component.corpEventForm.controls['lastName'].setValue("Saenz");
     component.corpEventForm.controls['email'].setValue("test@gmail.com");
     component.corpEventForm.controls['startDate'].setValue(startDate);
     component.corpEventForm.controls['endDate'].setValue(endDate);
     expect(component.corpEventForm.valid).toBeTruthy();
+    expect(component.validateDates(component.corpEventForm)).toBeTruthy();
+  })
+
+  it('submitting a form with a missing required field', () => {
+    let startDate = new Date(2018);
+    let endDate = new Date(2018);
+    //Expect the form initially to be invalid
+    expect(component.corpEventForm.valid).toBeFalsy();
+    //Fill in form with only required fields
+    component.corpEventForm.controls['firstName'].setValue("Alejandro");
+    component.corpEventForm.controls['lastName'].setValue("Saenz");
+    component.corpEventForm.controls['startDate'].setValue(startDate);
+    component.corpEventForm.controls['endDate'].setValue(endDate);
+    expect(component.corpEventForm.valid).toBeFalsy();
   })
 });

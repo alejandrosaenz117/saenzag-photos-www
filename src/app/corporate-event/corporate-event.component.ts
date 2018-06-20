@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { AppService } from '../app.service';
 import { CorporateEventInquiryForm } from '../corporate-event-inquiry-form';
-//import { validateDates } from '../validators/date.validator';
 
 
 @Component({
@@ -66,6 +65,16 @@ export class CorporateEventComponent implements OnChanges {
         }
       )
     this.corpEventForm.reset();
+  }
+
+  validateDates(form: FormGroup) {
+    if (form.controls['endDate'] && form.controls['startDate']) {
+      if(form.controls['startDate'].value <= form.controls['endDate'].value)
+          return true;
+      else {
+          return false;
+      }
+    }
   }
 
 }

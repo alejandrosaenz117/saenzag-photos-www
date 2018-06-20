@@ -58,7 +58,7 @@
       <div class="form-group">
         <textarea formControlName="additionalInfo" type="textarea" class="form-control" id="additionalInfo" placeholder="Additional Info"></textarea>
       </div>
-      <button [disabled]="!corpEventForm.valid" type="submit" class="btn btn-success">Submit</button>
+      <button [disabled]="!corpEventForm.valid || !validateDates(corpEventForm)" type="submit" class="btn btn-success">Submit</button>
     </form>
   </div>
 </div>
