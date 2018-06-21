@@ -50,6 +50,10 @@ export class AppService {
     return this.http.get<String[]>(`${this.api}/gallery_family_portraits`)
   }
 
+  getCoupleAndEngagement() {
+    return this.http.get<String[]>(`${this.api}/couple_engagement`)
+  }
+
   submitContactForm(contactForm: Contact) {
     return this.http.post(`${this.api}/contactFormSubmit`, contactForm)
   }

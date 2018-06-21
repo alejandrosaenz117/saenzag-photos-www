@@ -69,13 +69,13 @@ const ROUTES = [
     component: CorporateEventComponent
   },
   {
-    path: 'proserv/couple-engagement',
-    component: CoupleEngagementComponent
-  },
-  {
     path: 'proserv/family-portrait',
     component: FamilyPortraitComponent
   },
+  {
+    path: 'proserv/couple-engagement',
+    component: CoupleEngagementComponent
+  }
 ];
 
 @NgModule({
@@ -90,7 +90,7 @@ const ROUTES = [
     ProservComponent,
     CorporateEventComponent,
     CoupleEngagementComponent,
-    FamilyPortraitComponent,
+    FamilyPortraitComponent
   ],
   imports: [
     BrowserModule,

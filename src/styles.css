@@ -60,3 +60,10 @@ p, ul, li {
   padding-left: 10px;
 }
 
+#servicesCard {
+  height:75%;
+  width: 600px;
+  object-fit: cover;
+  padding: 15px;
+}
+
