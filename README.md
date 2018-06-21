@@ -1,10 +1,21 @@
-# Saenz A.G Photography prototype website
+# Saenz A.G Photography 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.2.
+## Set up
 
-## Development server
+Install the latest version of [Node](https://nodejs.org/en/)
+* `brew install node`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Install [Angular CLI](https://github.com/angular/angular-cli)
+*  `npm install -g @angular/cli`
+
+To install the project dependencies, you will need to install [Yarn](https://yarnpkg.com/en/docs/install).
+* `brew update`
+* `npm install -g yarn`
+* `yarn`
+
+## Server
+
+Run `yarn start` for a dev server. Navigate to `http://localhost:4200/` for dev and `http://localhost:3000/` for prod. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
