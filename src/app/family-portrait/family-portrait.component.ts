@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-family-portrait',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./family-portrait.component.css']
 })
 export class FamilyPortraitComponent implements OnInit {
+  images: String[];
 
-  constructor() { }
+  constructor(private appService: AppService) { }
 
   ngOnInit() {
+    this.appService.getFamilyPortraits().subscribe(result => this.images = result)
   }
 
 }
