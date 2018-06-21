@@ -1,0 +1,64 @@
+<div class="container-fluid row">
+  <div class="col-md-4">
+    <img id="portrait" class="image-responsive" src="../../assets/proserv/me_portrait.jpg">
+  </div>
+  <div class="col-md-6">
+    <h1>Professional Service Inquiry Form</h1>
+    <p>Are you looking for a photographer to capture moments at your event? Contact me by filling out the form below!</p>
+    <h2>Rates:</h2>
+    <ul>
+      <li>50 - 100 photographs per hour</li>
+      <li>A Google Drive link within 48 - 72 hours of event</li>
+      <li>Print, web, or both images</li>
+    </ul>
+    <p>Price: $200-$500 per hour</p>
+    <h2>Please complete the form below:</h2>
+    <form [formGroup]="corpEventForm" (ngSubmit)="onSubmit(corpEventForm)">
+      <div class="row">
+        <div class="col">
+          <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+          <div *ngIf="corpEventForm.controls['firstName'].errors && !corpEventForm.controls['firstName'].pristine" class="alert alert-danger">First Name is required</div>
+        </div>
+        <div class="col">
+          <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+          <div *ngIf="corpEventForm.controls['lastName'].errors && !corpEventForm.controls['lastName'].pristine" class="alert alert-danger">Last Name is required</div>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col">
+          <input formControlName="email" type="email" class="form-control" id="email" placeholder="email">
+          <div *ngIf="corpEventForm.controls['email'].errors && !corpEventForm.controls['email'].pristine" class="alert alert-danger">Email not valid</div>
+        </div>
+        <div class="col">
+          <input formControlName="phone" type="number" class="form-control" id="phone" placeholder="phone">
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <input formControlName="eventTitle" type="string" class="form-control" id="eventTitle" placeholder="Event Title">
+      </div>
+      <div class="row">
+        <div class="col">
+          <input formControlName="startDate" type="date" class="form-control" id="startDate" placeholder="Start Date">
+          <div *ngIf="(corpEventForm.controls['startDate'].errors && !corpEventForm.controls['startDate'].pristine)" class="alert alert-danger">Start Date is required</div>
+          <div *ngIf="(corpEventForm.controls['startDate'].value > corpEventForm.controls['endDate'].value ) && !corpEventForm.controls['endDate'].pristine" class="alert alert-danger">
+            Start Date must come before End Date
+          </div>
+        </div>
+        <div class="col">
+          <input formControlName="endDate" type="date" class="form-control" id="endDate" placeholder="End Date">
+          <div *ngIf="corpEventForm.controls['endDate'].errors && !corpEventForm.controls['endDate'].pristine" class="alert alert-danger">End Date is required</div>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <input formControlName="website" type="url" class="form-control" id="website" placeholder="Website">
+      </div>
+      <div class="form-group">
+        <textarea formControlName="additionalInfo" type="textarea" class="form-control" id="additionalInfo" placeholder="Additional Info"></textarea>
+      </div>
+      <button [disabled]="!corpEventForm.valid || !validateDates(corpEventForm)" type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
+</div>

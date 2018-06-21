@@ -87,6 +87,16 @@ router.get('/gallery_family_portraits', (req, res) => {
   res.status(200).json(images)
 })
 
+router.get('/couple_engagement', (req, res) => {
+  images = [];
+  fs.readdirSync(assets + '/proserv/couple-engagement').forEach(file => {
+      images.push('../../assets/proserv/couple-engagement/' + file)
+  })
+  //Removes .DS_Store
+  images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
+  res.status(200).json(images)
+})
+
 router.post('/contactFormSubmit', function(req, res){
   var transporter = nodemailer.createTransport({
     service: "Gmail",
@@ -100,6 +110,36 @@ router.post('/contactFormSubmit', function(req, res){
     to: config.gmail.mailTo,
     subject: 'New Contact Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
     text: `From: ${req.body.firstName} ${req.body.lastName}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
+  }
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+        res.json({yo: 'error'});
+    }else{
+        res.json({yo: info.response});
+    };
+  })
+})
+
+router.post('/corpEventFormSubmit', function(req, res){
+  var transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: config.gmail.user_name,
+        pass: config.gmail.password
+    }
+  })
+  var mailOptions = {
+    from: config.gmail.from,
+    to: config.gmail.mailTo,
+    subject: 'New Corporate Event Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
+    text:  `From: ${req.body.firstName} ${req.body.lastName}
+          \nEmail: ${req.body.email}
+          \nSubject: ${req.body.phone}
+          \nEvent Title: ${req.body.eventTitle}
+          \nStart Date: ${req.body.startDate}
+          \nEnd Date: ${req.body.endDate}
+          \nWebsite: ${req.body.website}
+          \nAdditional Info: ${req.body.additionalInfo}`
   }
   transporter.sendMail(mailOptions, function(error, info){
     if(error){

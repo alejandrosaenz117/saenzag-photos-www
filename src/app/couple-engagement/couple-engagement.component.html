@@ -1,0 +1,41 @@
+<h1 class="text-center">Couple & Engagements</h1>
+<p class="text-center">You and your significant other will choose one or two locations and outfits of your choice for an outdoor photo shoot. All
+  photographs will be captured through a DSLR camera with the option of digital film photographs.</p>
+<div class="row">
+
+  <div class=" col-md-6">
+    <img id="servicesCard" src="../../assets/proserv/olivia_engagement_2.jpg">
+    <h2>Silver Package</h2>
+    <ul>
+      <li>Up to 1 hour photo shoot</li>
+      <li>Limited to 1 outfit</li>
+      <li>Limited to 1 location</li>
+    </ul>
+  </div>
+
+  <div class="col-md-6">
+    <img id="servicesCard" src="../../assets/proserv/darian_ring.jpg">
+    <h2>Gold Package</h2>
+    <ul>
+      <li>Up to 2 hour photo shoot</li>
+      <li>Limited to 2 outfits</li>
+      <li>Limited to 2 locations</li>
+    </ul>
+  </div>
+
+</div>
+<hr>
+<h2>What you will receive: </h2>
+<p>High quality, retouched images delivered via cloud storage ready for immediate download and printing for your convenience.</p>
+<h2>Turn around time: 3 weeks</h2>
+<div class="text-center">
+    <a [routerLink]="['../../contact']">
+        <button class="btn btn-dark">Contact us!</button>
+    </a>
+</div>
+<hr>
+<ngb-carousel class="col-md-12 text-center" *ngIf="images">
+    <ng-template *ngFor="let image of images" ngbSlide>
+      <img [src]="image" style="height:525px;" class="image-responsive">
+    </ng-template>
+</ngb-carousel>

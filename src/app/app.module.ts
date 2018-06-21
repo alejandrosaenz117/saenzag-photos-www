@@ -16,6 +16,10 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { VideographyComponent } from './videography/videography.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
+import { ProservComponent } from './proserv/proserv.component';
+import { CorporateEventComponent } from './corporate-event/corporate-event.component';
+import { CoupleEngagementComponent } from './couple-engagement/couple-engagement.component';
+import { FamilyPortraitComponent } from './family-portrait/family-portrait.component';
 
 
 const ROUTES = [
@@ -55,6 +59,22 @@ const ROUTES = [
   {
     path: 'contact',
     component: ContactComponent
+  },
+  {
+    path: 'proserv',
+    component: ProservComponent
+  },
+  {
+    path: 'proserv/corp-event-inquiry',
+    component: CorporateEventComponent
+  },
+  {
+    path: 'proserv/family-portrait',
+    component: FamilyPortraitComponent
+  },
+  {
+    path: 'proserv/couple-engagement',
+    component: CoupleEngagementComponent
   }
 ];
 
@@ -67,6 +87,10 @@ const ROUTES = [
     VideographyComponent,
     AboutComponent,
     ContactComponent,
+    ProservComponent,
+    CorporateEventComponent,
+    CoupleEngagementComponent,
+    FamilyPortraitComponent
   ],
   imports: [
     BrowserModule,
