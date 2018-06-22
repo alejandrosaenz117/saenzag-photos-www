@@ -13,6 +13,8 @@ export class ContactComponent implements OnChanges {
   // public contactModel: Contact = new Contact("", "", "", "", "")
   public contactModel: Contact;
   submitted = false;
+  alertMessage: String;
+  alertType: String;
   contactForm: FormGroup;
 
   constructor(private appService: AppService, private fb: FormBuilder) {
@@ -36,13 +38,16 @@ export class ContactComponent implements OnChanges {
   onSubmit(contact: FormGroup) {
     this.contactModel = contact.value;
     this.appService.submitContactForm(this.contactModel)
-      // TODO:  Create success message!
       .subscribe(
         success => {
-          alert('Thank you!  We will review your submission and get back to you ASAP!');
+          this.alertMessage = "Thank you for your submission!  We will get back to you ASAP!";
+          this.alertType = "success";
+          this.submitted = true;
         },
         error => {
-          alert('There was an error processing your request! Please try again');
+          this.alertMessage = "Something went wrong!  Please try again later.";
+          this.alertType = "danger";
+          this.submitted = true;
         }
       );
     this.contactForm.reset();

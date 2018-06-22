@@ -13,7 +13,9 @@ import { CorporateEventInquiryForm } from '../corporate-event-inquiry-form';
 export class CorporateEventComponent implements OnChanges {
   corpEventFormModel: CorporateEventInquiryForm;
   corpEventForm: FormGroup;
-  emailRegex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$';
+  submitted = false;
+  alertType: String;
+  alertMessage: String;  
 
   constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();
@@ -58,10 +60,14 @@ export class CorporateEventComponent implements OnChanges {
       // TODO:  Create success message!
       .subscribe(
         success => {
-          alert('Thank you!  We will review your submission and get back to you ASAP!');
+          this.alertMessage = "Thank you for your submission!  We will get back to you ASAP!";
+          this.alertType = "success";
+          this.submitted = true;
         },
         error => {
-          alert('There was an error processing your request! Please try again');
+          this.alertMessage = "Something went wrong!  Please try again later.";
+          this.alertType = "danger";
+          this.submitted = true;
         }
       );
     this.corpEventForm.reset();
