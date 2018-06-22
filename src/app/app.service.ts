@@ -9,7 +9,7 @@ import { HttpErrorResponse} from '@angular/common/http';
 @Injectable()
 export class AppService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   api = 'http://localhost:3000/api';
 
@@ -39,27 +39,27 @@ export class AppService {
   }
 
   getMaternityGallery() {
-    return this.http.get<String[]>(`${this.api}/gallery_maternity`)
+    return this.http.get<String[]>(`${this.api}/gallery_maternity`);
   }
 
   getNightColorsGallery() {
-    return this.http.get<String[]>(`${this.api}/gallery_night_colors`)
+    return this.http.get<String[]>(`${this.api}/gallery_night_colors`);
   }
 
   getFamilyPortraits() {
-    return this.http.get<String[]>(`${this.api}/gallery_family_portraits`)
+    return this.http.get<String[]>(`${this.api}/gallery_family_portraits`);
   }
 
   getCoupleAndEngagement() {
-    return this.http.get<String[]>(`${this.api}/couple_engagement`)
+    return this.http.get<String[]>(`${this.api}/couple_engagement`);
   }
 
   submitContactForm(contactForm: Contact) {
-    return this.http.post(`${this.api}/contactFormSubmit`, contactForm)
+    return this.http.post(`${this.api}/contactFormSubmit`, contactForm);
   }
 
   submitCorporateEventForm(corpEventForm: CorporateEventInquiryForm) {
-    return this.http.post(`${this.api}/corpEventFormSubmit`, corpEventForm)
+    return this.http.post(`${this.api}/corpEventFormSubmit`, corpEventForm);
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -74,7 +74,7 @@ export class AppService {
         `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
-     return []
-  };
+     return [];
+  }
 
 }

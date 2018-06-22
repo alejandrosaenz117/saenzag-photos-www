@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
+import { MockAppService } from './mock-app.service';
 
 
 const ROUTES = [
@@ -53,9 +54,8 @@ const ROUTES = [
   }
 ];
 
-let appServiceStub: Partial<AppService>;
-
 describe('AppComponent', () => {
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -68,12 +68,12 @@ describe('AppComponent', () => {
         ContactComponent
       ],
       imports: [
-        RouterTestingModule.withRoutes(ROUTES, {useHash: true}),
+        RouterTestingModule.withRoutes(ROUTES, { useHash: true }),
         NgbModule,
         ReactiveFormsModule
       ],
-      providers:    [ 
-        { provide: AppService, useValue: appServiceStub } 
+      providers: [
+        { provide: AppService, useClass: MockAppService }
       ]
     }).compileComponents();
   }));

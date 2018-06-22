@@ -10,9 +10,9 @@ import { Contact } from '../contact';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnChanges {
-  //public contactModel: Contact = new Contact("", "", "", "", "")
+  // public contactModel: Contact = new Contact("", "", "", "", "")
   public contactModel: Contact;
-  submitted = false
+  submitted = false;
   contactForm: FormGroup;
 
   constructor(private appService: AppService, private fb: FormBuilder) {
@@ -30,21 +30,21 @@ export class ContactComponent implements OnChanges {
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
       message: ['', [Validators.required, Validators.maxLength(250)]]
-    })
+    });
   }
 
   onSubmit(contact: FormGroup) {
     this.contactModel = contact.value;
     this.appService.submitContactForm(this.contactModel)
-      //TODO:  Create success message!
+      // TODO:  Create success message!
       .subscribe(
         success => {
-          alert("Thank you!  We will review your submission and get back to you ASAP!")
+          alert('Thank you!  We will review your submission and get back to you ASAP!');
         },
         error => {
-          alert("There was an error processing your request! Please try again");
+          alert('There was an error processing your request! Please try again');
         }
-      )
+      );
     this.contactForm.reset();
   }
 

@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 
 import { ProservComponent } from './proserv.component';
 import { AppService } from '../app.service';
+import { MockAppService } from '../mock-app.service';
 
 const ROUTES = [
   {
@@ -15,13 +16,12 @@ const ROUTES = [
 describe('ProservComponent', () => {
   let component: ProservComponent;
   let fixture: ComponentFixture<ProservComponent>;
-  let appServiceStub: Partial<AppService>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ProservComponent ],
       providers: [
-        {provide: AppService, useValue: appServiceStub }
+        {provide: AppService, useClass: MockAppService }
       ],
       imports: [
         RouterModule.forRoot(ROUTES, {useHash: true})

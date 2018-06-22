@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { FamilyPortraitComponent } from './family-portrait.component';
 import { AppService } from '../app.service';
 
-const ROUTES= [
+const ROUTES = [
   {
     path: 'proserv/family-portrait',
     component: FamilyPortraitComponent
   }
-]
+];
 
 describe('FamilyPortraitComponent', () => {
   let component: FamilyPortraitComponent;

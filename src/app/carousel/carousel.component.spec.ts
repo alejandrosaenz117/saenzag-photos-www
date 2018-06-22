@@ -3,16 +3,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppService } from '../app.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 import { CarouselComponent } from './carousel.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
+class MockAppService extends AppService {
+  /**
+   * This method is implemented in the AppService
+   * we extend, but we overload it to make sure we
+   * return a value we wish to test against
+   */
+}
+
 
 describe('CarouselComponent', () => {
-  let component: CarouselComponent;
   let fixture: ComponentFixture<CarouselComponent>;
-  let activatedRoute: ActivatedRoute
-  let appServiceStub: Partial<AppService>;
 
   const ROUTES = [
     {
@@ -46,7 +50,7 @@ describe('CarouselComponent', () => {
         RouterTestingModule.withRoutes(ROUTES, {useHash: true}),
       ],
       providers: [
-        {provide: AppService, useValue: appServiceStub },
+        {provide: AppService, useClass: MockAppService },
         HttpClient
       ]
     })
@@ -55,7 +59,7 @@ describe('CarouselComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CarouselComponent);
-    component = fixture.componentInstance;
+    const component = fixture.componentInstance;
     fixture.detectChanges();
   });
 

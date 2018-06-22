@@ -7,12 +7,12 @@ import { HttpClient } from '@angular/common/http';
 import { CoupleEngagementComponent } from './couple-engagement.component';
 import { AppService } from '../app.service';
 
-const ROUTES= [
+const ROUTES = [
   {
     path: 'proserv/couple-engagement',
     component: CoupleEngagementComponent
   }
-]
+];
 
 describe('CoupleEngagementComponent', () => {
   let component: CoupleEngagementComponent;
