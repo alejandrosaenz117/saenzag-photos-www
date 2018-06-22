@@ -15,7 +15,7 @@ export class CorporateEventComponent implements OnChanges {
   corpEventForm: FormGroup;
   submitted = false;
   alertType: String;
-  alertMessage: String;  
+  alertMessage: String;
 
   constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();
@@ -60,13 +60,13 @@ export class CorporateEventComponent implements OnChanges {
       // TODO:  Create success message!
       .subscribe(
         success => {
-          this.alertMessage = "Thank you for your submission!  We will get back to you ASAP!";
-          this.alertType = "success";
+          this.alertMessage = 'Thank you for your submission!  We will get back to you ASAP!';
+          this.alertType = 'success';
           this.submitted = true;
         },
         error => {
-          this.alertMessage = "Something went wrong!  Please try again later.";
-          this.alertType = "danger";
+          this.alertMessage = 'Something went wrong!  Please try again later.';
+          this.alertType = 'danger';
           this.submitted = true;
         }
       );

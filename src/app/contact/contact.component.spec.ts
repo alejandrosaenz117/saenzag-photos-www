@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { ContactComponent } from './contact.component';
 import { AppService } from '../app.service';
@@ -14,10 +17,13 @@ describe('ContactComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ ContactComponent ],
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule,
+        HttpClientTestingModule
       ],
       providers: [
-        {provide: AppService, useClass: MockAppService }
+        {provide: AppService, useClass: MockAppService },
+        HttpClient
       ]
     })
     .compileComponents();
