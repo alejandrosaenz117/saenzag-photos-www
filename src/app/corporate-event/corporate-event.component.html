@@ -12,6 +12,7 @@
       <li>Print, web, or both images</li>
     </ul>
     <p>Price: $200-$500 per hour</p>
+    <ngb-alert class="text-center" [type]="alertType" *ngIf="submitted" (close)="submitted=false">{{alertMessage}}</ngb-alert>
     <h2>Please complete the form below:</h2>
     <form [formGroup]="corpEventForm" (ngSubmit)="onSubmit(corpEventForm)">
       <div class="row">
@@ -42,7 +43,8 @@
         <div class="col">
           <input formControlName="startDate" type="date" class="form-control" id="startDate" placeholder="Start Date">
           <div *ngIf="(corpEventForm.controls['startDate'].errors && !corpEventForm.controls['startDate'].pristine)" class="alert alert-danger">Start Date is required</div>
-          <div *ngIf="(corpEventForm.controls['startDate'].value > corpEventForm.controls['endDate'].value ) && !corpEventForm.controls['endDate'].pristine" class="alert alert-danger">
+          <div *ngIf="(corpEventForm.controls['startDate'].value > corpEventForm.controls['endDate'].value ) && !corpEventForm.controls['endDate'].pristine"
+            class="alert alert-danger">
             Start Date must come before End Date
           </div>
         </div>
