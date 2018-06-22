@@ -13,9 +13,9 @@ import { CorporateEventInquiryForm } from '../corporate-event-inquiry-form';
 export class CorporateEventComponent implements OnChanges {
   corpEventFormModel: CorporateEventInquiryForm;
   corpEventForm: FormGroup;
-  emailRegex: string = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$';
+  emailRegex = '^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$';
 
-  constructor(private appService: AppService, private fb: FormBuilder) { 
+  constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();
   }
 
@@ -34,9 +34,9 @@ export class CorporateEventComponent implements OnChanges {
       endDate: ['', Validators.required],
       website: [''],
       additionalInfo: ['']
-    })
+    });
   }
-  
+
 
   rebuildForm() {
     this.corpEventForm.reset({
@@ -49,29 +49,29 @@ export class CorporateEventComponent implements OnChanges {
       endDate: this.corpEventFormModel.endDate,
       website: this.corpEventFormModel.website,
       additionalInfo: this.corpEventFormModel.additionalInfo,
-    })
+    });
   }
 
   onSubmit(form: FormGroup) {
     this.corpEventFormModel = form.value;
     this.appService.submitCorporateEventForm(this.corpEventFormModel)
-      //TODO:  Create success message!
+      // TODO:  Create success message!
       .subscribe(
         success => {
-          alert("Thank you!  We will review your submission and get back to you ASAP!")
+          alert('Thank you!  We will review your submission and get back to you ASAP!');
         },
         error => {
-          alert("There was an error processing your request! Please try again");
+          alert('There was an error processing your request! Please try again');
         }
-      )
+      );
     this.corpEventForm.reset();
   }
 
   validateDates(form: FormGroup) {
     if (form.controls['endDate'] && form.controls['startDate']) {
-      if(form.controls['startDate'].value <= form.controls['endDate'].value)
+      if (form.controls['startDate'].value <= form.controls['endDate'].value) {
           return true;
-      else {
+      } else {
           return false;
       }
     }

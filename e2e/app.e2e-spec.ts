@@ -18,14 +18,14 @@ describe('saenzag-photos-www App', () => {
     expect(page.getHomePageURL()
       .then(res => {
         expect(res).toContain('landscape');
-      }))
-  })
+      }));
+  });
 
   it('should have ng-version', () => {
     page.navigateTo();
     expect(page.getIconCount().then(res => {
       expect(res).toBe('6.0.3');
-    }))
+    }));
   });
 
   it('should return home after clicking icon', () => {
@@ -34,8 +34,8 @@ describe('saenzag-photos-www App', () => {
     expect(page.getHomePageURL()
       .then(res => {
         expect(res).toContain('/#');
-      }))
-  })
+      }));
+  });
 
   /** Navbar */
 
@@ -120,31 +120,31 @@ describe('saenzag-photos-www App', () => {
     page.navigateTo();
     expect(page.getFacebook().getAttribute('href')
       .then(result => {
-        expect(result).toEqual('https://www.facebook.com/saenzagphotos/')
-      }))
+        expect(result).toEqual('https://www.facebook.com/saenzagphotos/');
+      }));
   });
 
   it('Should get the Twitter link on the footer', () => {
     page.navigateTo();
     expect(page.getTwitter().getAttribute('href')
       .then(result => {
-        expect(result).toEqual('https://twitter.com/saenzagphotos')
-      }))
+        expect(result).toEqual('https://twitter.com/saenzagphotos');
+      }));
   });
 
   it('Should get the Instagram link on the footer', () => {
     page.navigateTo();
     expect(page.getInstagram().getAttribute('href')
       .then(result => {
-        expect(result).toEqual('https://www.instagram.com/saenzagphotos/')
-      }))
+        expect(result).toEqual('https://www.instagram.com/saenzagphotos/');
+      }));
   });
 
   it('Should get the Youtube link on the footer', () => {
     page.navigateTo();
     expect(page.getYoutube().getAttribute('href')
       .then(result => {
-        expect(result).toEqual('https://www.youtube.com/channel/UCNiuhaCrRY_4MgU46-o-0vQ')
-      }))
+        expect(result).toEqual('https://www.youtube.com/channel/UCNiuhaCrRY_4MgU46-o-0vQ');
+      }));
   });
 });

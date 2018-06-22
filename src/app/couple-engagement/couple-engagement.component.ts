@@ -18,7 +18,7 @@ export class CoupleEngagementComponent implements OnInit {
 
   getFamilyPortraits() {
     this.appService.getCoupleAndEngagement()
-      .subscribe(result => this.images = result)
+      .subscribe(result => this.images = result);
   }
 
 }

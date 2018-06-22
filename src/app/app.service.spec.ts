@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 
 import { AppService } from './app.service';
 
-let httpClientSpy: { get: jasmine.Spy };
-
 describe('AppService', () => {
   let appService: AppService;
   let httpClient: HttpClient;
@@ -24,32 +22,32 @@ describe('AppService', () => {
     httpClient = TestBed.get(HttpClient);
     httpMock = TestBed.get(HttpTestingController);
   });
-  
+
   afterEach(() => {
     httpMock.verify();
-  })
+  });
 
   it('should be created', inject([AppService], (service: AppService) => {
     expect(service).toBeTruthy();
   }));
 
   describe('#getFilmGallery', () => {
-    let expectedImages: String[];
+    const expectedImages: String[] = [];
 
     it('should return expected film images (called once)', () => {
       const dummyImages: String[] = [
         'A', 'B', 'C'
-      ]
+      ];
 
       appService.getFilmGallery().subscribe(
         images => expect(images).toEqual(dummyImages, 'should return expected images')
-    )
+    );
       const req = httpMock.expectOne('http://localhost:3000/api/gallery_film');
       req.flush(dummyImages);
   });
 
     it('should be OK returning no images', () => {
-      const dummyImages: String[] = []
+      const dummyImages: String[] = [];
 
       appService.getFilmGallery().subscribe(
         images => expect(images.length).toEqual(0, 'should have empty images array')
@@ -62,7 +60,7 @@ describe('AppService', () => {
 
     // This service reports the error but finds a way to let the app keep going.
     it('should turn 404 into an empty images result', () => {
-      const dummyImages: String[] = []
+      const dummyImages: String[] = [];
 
       appService.getFilmGallery().subscribe(
         images => expect(images.length).toEqual(0, 'should return empty images array')
@@ -82,17 +80,17 @@ describe('AppService', () => {
     it('should return expected landscape images (called once)', () => {
       const dummyImages: String[] = [
         'A', 'B', 'C'
-      ]
+      ];
 
       appService.getLandscapeGallery().subscribe(
         images => expect(images).toEqual(dummyImages, 'should return expected images')
-    )
+    );
       const req = httpMock.expectOne('http://localhost:3000/api/gallery_landscape');
       req.flush(dummyImages);
   });
 
     it('should be OK returning no images', () => {
-      const dummyImages: String[] = []
+      const dummyImages: String[] = [];
 
       appService.getLandscapeGallery().subscribe(
         images => expect(images.length).toEqual(0, 'should have empty images array')
@@ -105,7 +103,7 @@ describe('AppService', () => {
 
     // This service reports the error but finds a way to let the app keep going.
     it('should turn 404 into an empty images result', () => {
-      const dummyImages: String[] = []
+      const dummyImages: String[] = [];
 
       appService.getLandscapeGallery().subscribe(
         images => expect(images.length).toEqual(0, 'should return empty images array')

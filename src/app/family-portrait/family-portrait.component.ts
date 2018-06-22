@@ -12,7 +12,7 @@ export class FamilyPortraitComponent implements OnInit {
   constructor(private appService: AppService) { }
 
   ngOnInit() {
-    this.appService.getFamilyPortraits().subscribe(result => this.images = result)
+    this.appService.getFamilyPortraits().subscribe(result => this.images = result);
   }
 
 }
