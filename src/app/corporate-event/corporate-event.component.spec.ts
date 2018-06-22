@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CorporateEventComponent } from './corporate-event.component';
 import { AppService } from '../app.service';
@@ -13,10 +16,13 @@ describe('CorporateEventComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CorporateEventComponent ],
       providers: [
-        {provide: AppService, useClass: MockAppService }
+        {provide: AppService, useClass: MockAppService },
+        HttpClient
       ],
       imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule,
+        HttpClientTestingModule
       ]
     })
     .compileComponents();
