@@ -17,7 +17,7 @@ To install the project dependencies, you will need to install [Yarn](https://yar
 
 Run `yarn start` for a dev server. Navigate to `http://localhost:4200/` for dev and `http://localhost:3000/` for prod. The app will automatically reload if you change any of the source files.
 
-##### Please note:  config.js is not included with the repo.  The application will throw an error when sending emails!
+##### Please note:  config.js is empty!  Emails will not work!
 
 ## Code scaffolding
 

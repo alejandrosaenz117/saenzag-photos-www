@@ -45,4 +45,4 @@ testem.log
 Thumbs.db
 
 # Config
-config.js
+config-actual.js
