@@ -1,3 +1,7 @@
 .fa-facebook, .fa-twitter, .fa-instagram, .fa-youtube {
     color: rgba(0,0,0,.5);
 }
+
+footer {
+    height:30px;
+}
