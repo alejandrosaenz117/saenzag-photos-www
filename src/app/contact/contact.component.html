@@ -1,7 +1,7 @@
 <br/>
 <div class="container col-md-6">
     <ngb-alert class="text-center" [type]="alertType" *ngIf="submitted" (close)="submitted=false">{{alertMessage}}</ngb-alert>
-    <h1>Please fill out the form with any questions or inquiries you have. </h1>
+    <h1 class="text-center">Please fill out the form with any questions or inquiries you have. </h1>
     <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contactForm)">
         <div class="row">
             <div class="col">
