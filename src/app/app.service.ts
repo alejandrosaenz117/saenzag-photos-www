@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, filter, scan, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Contact } from './contact';
 import { CorporateEventInquiryForm } from './corporate-event-inquiry-form';
-import { HttpErrorResponse} from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -13,45 +14,46 @@ export class AppService {
 
   api = 'http://localhost:3000/api';
 
-  /*
-  getAPI() {
-    return this.http.get(`${this.api}`).pipe(
-      map(res => res.json()));
-  }
-
-  getAllPosts() {
-    return this.http.get(`${this.api}/posts`)
-    .pipe(map(res => res.json()));
-  }
-*/
-  getLandscapeGallery() {
+  getLandscapeGallery(): Observable<String[]> {
     return this.http.get<String[]>(`${this.api}/gallery_landscape`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getFilmGallery() {
+  getFilmGallery(): Observable<String[]> {
     return this.http.get<String[]>(`${this.api}/gallery_film`)
       .pipe(
         catchError(this.handleError)
       );
   }
 
-  getMaternityGallery() {
-    return this.http.get<String[]>(`${this.api}/gallery_maternity`);
+  getMaternityGallery(): Observable<String[]> {
+    return this.http.get<String[]>(`${this.api}/gallery_maternity`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getNightColorsGallery() {
-    return this.http.get<String[]>(`${this.api}/gallery_night_colors`);
+  getNightColorsGallery(): Observable<String[]> {
+    return this.http.get<String[]>(`${this.api}/gallery_night_colors`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getFamilyPortraits() {
-    return this.http.get<String[]>(`${this.api}/gallery_family_portraits`);
+  getFamilyPortraits(): Observable<String[]> {
+    return this.http.get<String[]>(`${this.api}/gallery_family_portraits`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  getCoupleAndEngagement() {
-    return this.http.get<String[]>(`${this.api}/couple_engagement`);
+  getCoupleAndEngagement(): Observable<String[]> {
+    return this.http.get<String[]>(`${this.api}/couple_engagement`)
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
   submitContactForm(contactForm: Contact) {
@@ -74,7 +76,7 @@ export class AppService {
         `body was: ${error.error}`);
     }
     // return an observable with a user-facing error message
-     return [];
+    return [];
   }
 
 }
