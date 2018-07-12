@@ -38,8 +38,10 @@ app.get('*', (req, res) => {
 /**
  * Get port from environment and store in Express.
  */
-const port = process.env.PORT || '3000'
-app.set('port', port)
+const server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+app.set('port', server_port)
+app.set('server_ip_address', server_ip_address)
 
 /**
  * Create HTTP server.
@@ -49,4 +51,4 @@ const server = http.createServer(app)
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(port, () => console.log(`API running on localhost:${port}`))
+server.listen(server_port, server_ip_address, () => console.log(`API running on ${server_ip_address}:${server_port}`))
