@@ -38,8 +38,8 @@ app.get('*', (req, res) => {
 /**
  * Get port from environment and store in Express.
  */
-const server_port = process.env.OPENSHIFT_NODEJS_PORT || 8080
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
+const server_port = process.env.PORT || 8080
+var server_ip_address = process.env.IP || '127.0.0.1'
 app.set('port', server_port)
 app.set('server_ip_address', server_ip_address)
 
