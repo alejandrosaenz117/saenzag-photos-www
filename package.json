@@ -7,10 +7,11 @@
     "client": "ng serve",
     "server": "ng build --prod && nodemon server.js",
     "start": "npm-run-all -p client server",
-    "build": "ng build --prod && node server.js",
+    "build": "node server.js",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
