@@ -51,4 +51,4 @@ const server = http.createServer(app)
 /**
  * Listen on provided port, on all network interfaces.
  */
-server.listen(server_port, server_ip_address, () => console.log(`API running on ${server_ip_address}:${server_port}`))
+server.listen(process.env.PORT || 5000, () => console.log(`API running on ${server_ip_address}:${server_port}`))
