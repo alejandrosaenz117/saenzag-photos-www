@@ -12,7 +12,7 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  api = 'http://localhost:8080/api';
+  api = 'http://localhost:5000/api';
 
   getLandscapeGallery(): Observable<String[]> {
     return this.http.get<String[]>(`${this.api}/gallery_landscape`)
