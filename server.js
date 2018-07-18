@@ -8,7 +8,9 @@ var xssFilter = require('x-xss-protection')
 var nosniff = require('dont-sniff-mimetype')
 const api = require('./server/routes/api')
 const app = express()
+const cors = require('cors')
 
+app.use(cors())
 app.use(express.static('assets'))
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -18,6 +20,7 @@ app.use(hsts({
 app.use(xssFilter())
 app.use(nosniff())
 app.disable('x-powered-by')
+app.set('etag', false);
 app.use(helmet({
     noCache: true
 }))
