@@ -1,6 +1,7 @@
 #proserv-card {
     object-fit: cover;
     padding: 15px;
+    height: 350px;
 }
 
 p, ul, li {

@@ -4,27 +4,13 @@ const fs = require('fs')
 var path = require('path');
 const nodemailer = require('nodemailer')
 const config = require('../../config');
+const app = express()
 
-// declare axios for making http requests
-const axios = require('axios');
-const API = 'https://jsonplaceholder.typicode.com';
 const assets = path.join(__dirname, '..','..','src', 'assets');
-console.log(assets)
 
 /* GET api listing. */
 router.get('/', (req, res) => {
   res.send('api works');
-});
-
-// Get all posts
-router.get('/posts', (req, res) => {
-  axios.get(`${API}/posts`)
-    .then(posts => {
-      res.status(200).json(posts.data);
-    })
-    .catch(error => {
-      res.status(500).send(error)
-    });
 });
 
 function extension(element) {
