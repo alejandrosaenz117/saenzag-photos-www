@@ -4,7 +4,7 @@
 <div class="row">
 
   <div class="col-md-6 text-center">
-    <img id="servicesCard" src="../../assets/proserv/olivia_engagement_2.jpg">
+    <img id="servicesCard" class="img-fluid" src="../../assets/proserv/olivia_engagement_2.jpg">
     <h2>Silver Package</h2>
     <ul>
       <li>Up to 1 hour photo shoot</li>
@@ -14,7 +14,7 @@
   </div>
 
   <div class="col-md-6 text-center">
-    <img id="servicesCard" src="../../assets/proserv/darian_ring.jpg">
+    <img id="servicesCard" class="img-fluid" src="../../assets/proserv/darian_ring.jpg">
     <h2>Gold Package</h2>
     <ul>
       <li>Up to 2 hour photo shoot</li>
@@ -34,8 +34,8 @@
     </a>
 </div>
 <hr>
-<ngb-carousel class="col-md-12 text-center" *ngIf="images">
+<ngb-carousel class="text-center" *ngIf="images">
     <ng-template *ngFor="let image of images" ngbSlide>
-      <img [src]="image" style="height:525px;" class="image-responsive">
+      <img [src]="image" class="img-fluid">
     </ng-template>
 </ngb-carousel>

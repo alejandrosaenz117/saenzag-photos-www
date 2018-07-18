@@ -1,11 +1,5 @@
-<ngb-carousel class="col-md-12 text-center" *ngIf="images">
-    <ng-template *ngFor="let image of images" ngbSlide>
-      <img [src]="image" style="max-height:750px;" class="image-responsive">
-      <!--
-      <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    -->
-    </ng-template>
-  </ngb-carousel>
+<ngb-carousel class="text-center" *ngIf="images">
+  <ng-template *ngFor="let image of images" ngbSlide>
+    <img [src]="image" style="max-height:750px;" class="img-fluid">
+  </ng-template>
+</ngb-carousel>
