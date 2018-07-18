@@ -17,7 +17,7 @@ app.use(express.static('assets'))
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-//app.use(cors())
+app.use(cors())
 app.use(hsts({
   maxAge: 15552000  // 180 days in seconds
 }))
