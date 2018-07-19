@@ -1,5 +1,7 @@
 # [Saenz A.G. Photography](https://saenzag.photos)
 
+![Heroku](https://heroku-badge.herokuapp.com/?app=blooming-reef-68251&style=flat)  
+
 ## Set up
 
 Install the latest version of [Node](https://nodejs.org/en/)
