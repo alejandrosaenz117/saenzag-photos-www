@@ -5,12 +5,13 @@ var path = require('path');
 const nodemailer = require('nodemailer')
 const config = require('../../config');
 const app = express()
+const onHeaders = require('on-headers')
 
 const assets = path.join(__dirname, '..','..','src', 'assets');
 
 /* GET api listing. */
 router.get('/', (req, res) => {
-  res.send('api works');
+  scrubHeaders(res)
 });
 
 function extension(element) {
@@ -19,6 +20,7 @@ function extension(element) {
 };
 
 router.get('/gallery_landscape', (req, res) => {
+  scrubHeaders(res)
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_landscape').forEach(file => {
@@ -30,6 +32,7 @@ router.get('/gallery_landscape', (req, res) => {
 })
 
 router.get('/gallery_film', (req, res) => {
+  scrubHeaders(res)
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_film').forEach(file => {
@@ -41,6 +44,7 @@ router.get('/gallery_film', (req, res) => {
 })
 
 router.get('/gallery_maternity', (req, res) => {
+  scrubHeaders(res)
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_maternity').forEach(file => {
@@ -52,6 +56,7 @@ router.get('/gallery_maternity', (req, res) => {
 })
 
 router.get('/gallery_night_colors', (req, res) => {
+  scrubHeaders(res)
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_night_colors').forEach(file => {
@@ -63,6 +68,7 @@ router.get('/gallery_night_colors', (req, res) => {
 })
 
 router.get('/gallery_family_portraits', (req, res) => {
+  scrubHeaders(res)
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_family_portraits').forEach(file => {
@@ -74,6 +80,7 @@ router.get('/gallery_family_portraits', (req, res) => {
 })
 
 router.get('/couple_engagement', (req, res) => {
+  scrubHeaders(res)
   images = [];
   fs.readdirSync(assets + '/proserv/couple-engagement').forEach(file => {
       images.push('../../assets/proserv/couple-engagement/' + file)
@@ -84,6 +91,7 @@ router.get('/couple_engagement', (req, res) => {
 })
 
 router.post('/contactFormSubmit', function(req, res){
+  scrubHeaders(res)
   var transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -107,6 +115,7 @@ router.post('/contactFormSubmit', function(req, res){
 })
 
 router.post('/corpEventFormSubmit', function(req, res){
+  scrubHeaders(res)
   var transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
@@ -135,5 +144,12 @@ router.post('/corpEventFormSubmit', function(req, res){
     };
   })
 })
+
+function scrubHeaders(res) {
+  onHeaders(res, function () {
+    this.removeHeader('ETag')
+    this.removeHeader('Server')
+  })
+}
 
 module.exports = router;

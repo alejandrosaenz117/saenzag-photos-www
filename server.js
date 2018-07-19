@@ -24,7 +24,9 @@ app.set('etag', false);
 app.use(helmet({
     noCache: true
 }))
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join(__dirname, 'dist'),{
+  etag: false
+}))
 // Set our api routes
 app.use('/api', api)
 // Catch all other routes and return the index file
