@@ -222,6 +222,10 @@
     semver "^5.3.0"
     semver-intersect "^1.1.2"
 
+"@types/grecaptcha@^2.0.33":
+  version "2.0.35"
+  resolved "https://registry.yarnpkg.com/@types/grecaptcha/-/grecaptcha-2.0.35.tgz#f63fcd8f11e0aa62b6d8746267142440d8d89975"
+
 "@types/jasmine@*", "@types/jasmine@^2.8.7":
   version "2.8.8"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.8.tgz#bf53a7d193ea8b03867a38bfdb4fbb0e0bf066c9"
@@ -4542,6 +4546,12 @@ next-tick@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
+ng-recaptcha@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/ng-recaptcha/-/ng-recaptcha-3.0.5.tgz#e22a20800901f5cf4468cf5f5d69af01f1220793"
+  optionalDependencies:
+    "@types/grecaptcha" "^2.0.33"
+
 nice-try@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.4.tgz#d93962f6c52f2c1558c0fbda6d512819f1efe1c4"
@@ -5893,6 +5903,10 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   resolved "https://registry.yarnpkg.com/run-queue/-/run-queue-1.0.3.tgz#e848396f057d223f24386924618e25694161ec47"
   dependencies:
     aproba "^1.1.1"
+
+rxjs-compat@^6.2.2:
+  version "6.2.2"
+  resolved "https://registry.yarnpkg.com/rxjs-compat/-/rxjs-compat-6.2.2.tgz#3c0fcdb46130cc70aa55412c2b1147905ab4680a"
 
 rxjs@^6.0.0, rxjs@^6.2.0:
   version "6.2.2"

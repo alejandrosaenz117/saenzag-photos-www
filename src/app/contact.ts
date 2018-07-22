@@ -5,6 +5,7 @@ export class Contact {
         public lastName: string,
         public email: string,
         public subject: string,
-        public message: string
+        public message: string,
+        public captcha: string
     ) { }
 }

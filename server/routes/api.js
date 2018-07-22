@@ -6,6 +6,7 @@ const nodemailer = require('nodemailer')
 const config = require('../../config');
 const app = express()
 const onHeaders = require('on-headers')
+const request = require('request');
 
 const assets = path.join(__dirname, '..','..','src', 'assets');
 
@@ -91,27 +92,43 @@ router.get('/couple_engagement', (req, res) => {
 })
 
 router.post('/contactFormSubmit', function(req, res){
-  scrubHeaders(res)
-  var transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-        user: config.gmail.user_name,
-        pass: config.gmail.password
-    }
-  })
-  var mailOptions = {
-    from: config.gmail.from,
-    to: config.gmail.mailTo,
-    subject: 'New Contact Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
-    text: `From: ${req.body.firstName} ${req.body.lastName}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
-  }
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        res.json({yo: 'error'});
-    }else{
-        res.json({yo: info.response});
-    };
-  })
+    const gRecaptchaResponse = req.header('g-recaptcha-response')
+    // Secret Key
+    const secretKey = config.recaptcha.secret_key_dev;
+    // Verify URL
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponse}&remoteip=${req.connection.remoteAddress}`;
+    // Make Request To VerifyURL
+    request(verifyUrl, (err, response, body) => {
+      // If Not Successful
+      if(body.success !== undefined && !body.success){
+        return res.json({"success": false, "msg":"Failed captcha verification"});
+      }
+      //If Successful
+      else if(body.success !== undefined && body.success) {
+        res.json({"success": true, "msg":"Captcha passed"});
+        var transporter = nodemailer.createTransport({
+          service: "Gmail",
+          auth: {
+              user: config.gmail.user_name,
+              pass: config.gmail.password
+          }
+        })
+        var mailOptions = {
+          from: config.gmail.from,
+          to: config.gmail.mailTo,
+          subject: 'New Contact Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
+          text: `From: ${req.body.firstName} ${req.body.lastName}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
+        }
+        transporter.sendMail(mailOptions, function(error, info){
+          if(error){
+              res.json({yo: 'error'});
+          }else{
+              scrubHeaders(res)
+              res.json({yo: verifyUrl});
+          };
+        })
+      } 
+    });
 })
 
 router.post('/corpEventFormSubmit', function(req, res){
@@ -151,5 +168,9 @@ function scrubHeaders(res) {
     this.removeHeader('Server')
   })
 }
+function subscribe(gRecaptchaResponse) {
+
+}
+
 
 module.exports = router;

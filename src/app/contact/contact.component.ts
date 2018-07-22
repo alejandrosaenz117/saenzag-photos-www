@@ -1,8 +1,9 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, ElementRef, ViewChild } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Contact } from '../contact';
+
 
 @Component({
   selector: 'app-contact',
@@ -10,12 +11,15 @@ import { Contact } from '../contact';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnChanges {
-  // public contactModel: Contact = new Contact("", "", "", "", "")
   public contactModel: Contact;
   submitted = false;
   alertMessage: String;
   alertType: String;
   contactForm: FormGroup;
+
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response ${captchaResponse}:`);
+  }
 
   constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();
@@ -31,12 +35,14 @@ export class ContactComponent implements OnChanges {
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       subject: ['', Validators.required],
-      message: ['', [Validators.required, Validators.maxLength(250)]]
+      message: ['', [Validators.required, Validators.maxLength(250)]],
+      captcha: [null, Validators.required]
     });
   }
 
   onSubmit(contact: FormGroup) {
     this.contactModel = contact.value;
+    console.log(this.contactModel);
     this.appService.submitContactForm(this.contactModel)
       .subscribe(
         success => {
@@ -60,6 +66,7 @@ export class ContactComponent implements OnChanges {
       email: this.contactModel.email,
       subject: this.contactModel.subject,
       message: this.contactModel.message,
+      captcha: this.contactModel.captcha
     });
   }
 

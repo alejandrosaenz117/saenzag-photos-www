@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -97,7 +99,9 @@ const ROUTES = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES, {useHash: true}),
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    RecaptchaModule.forRoot(),
+    RecaptchaFormsModule
   ],
   providers: [ AppService, HttpClient ],
   bootstrap: [AppComponent]
