@@ -7,7 +7,6 @@ const config = require('../../config');
 const app = express()
 const onHeaders = require('on-headers')
 const request = require('request');
-const bodyParser = require('body-parser')
 
 const assets = path.join(__dirname, '..','..','src', 'assets');
 

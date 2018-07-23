@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnChanges } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
