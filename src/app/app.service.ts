@@ -6,19 +6,12 @@ import { CorporateEventInquiryForm } from './corporate-event-inquiry-form';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'g-recaptcha-response': '6LfzemUUAAAAAL5eeYJAaracTl1V0RlggwtcyhV0'
-  })
-};
-
-
 @Injectable()
 export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  api = 'http://localhost:5000/api';
+  api = 'https://blooming-reef-68251.herokuapp.com/api';
 
   getLandscapeGallery(): Observable<String[]> {
     return this.http.get<String[]>(`${this.api}/gallery_landscape`)

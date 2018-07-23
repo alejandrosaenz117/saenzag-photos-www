@@ -95,7 +95,7 @@ router.get('/couple_engagement', (req, res) => {
 
 router.post('/contactFormSubmit', function(req, res){
     const gRecaptchaResponseValue = req.body.captcha
-    var secretKey = config.recaptcha.secret_key_dev;
+    var secretKey = config.recaptcha.secret_key;
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponseValue}&remoteip=${req.connection.remoteAddress}`;
     request(verifyUrl, (err, response, body) => {
       body = JSON.parse(body)
