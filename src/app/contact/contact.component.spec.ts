@@ -2,7 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 import { ContactComponent } from './contact.component';
 import { AppService } from '../app.service';
@@ -19,12 +21,13 @@ describe('ContactComponent', () => {
       imports: [
         ReactiveFormsModule,
         NgbModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RecaptchaModule.forRoot(),
+        RecaptchaFormsModule
       ],
       providers: [
         {provide: AppService, useClass: MockAppService },
-        HttpClient
-      ]
+        HttpClient      ]
     })
     .compileComponents();
   }));
@@ -103,6 +106,18 @@ describe('ContactComponent', () => {
     expect(errors['required']).toBeTruthy();
   });
 
+  it('captcha validity', () => {
+    const captcha = component.contactForm.controls['captcha'];
+    expect(captcha.valid).toBeFalsy();
+  });
+
+  it('captcha validity', () => {
+    let errors = {};
+    const captcha = component.contactForm.controls['captcha'];
+    errors = captcha.errors || {};
+    expect(errors['required']).toBeTruthy();
+  });
+
   it('submitting a form', () => {
     // Expect the form initially to be invalid
     expect(component.contactForm.valid).toBeFalsy();
@@ -112,6 +127,7 @@ describe('ContactComponent', () => {
     component.contactForm.controls['email'].setValue('test@gmail.com');
     component.contactForm.controls['subject'].setValue('Photo Shoot Quote');
     component.contactForm.controls['message'].setValue('Hello, I\'m reaching out to see if you\'re available for a quick photoshoot.');
+    component.contactForm.controls['captcha'].setValue('testCaptcha');
     expect(component.contactForm.valid).toBeTruthy();
   });
 });

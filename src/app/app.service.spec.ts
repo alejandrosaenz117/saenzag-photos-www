@@ -42,7 +42,7 @@ describe('AppService', () => {
       appService.getFilmGallery().subscribe(
         images => expect(images).toEqual(dummyImages, 'should return expected images')
     );
-      const req = httpMock.expectOne('http://localhost:3000/api/gallery_film');
+      const req = httpMock.expectOne('https://blooming-reef-68251.herokuapp.com/api/gallery_film');
       req.flush(dummyImages);
   });
 
@@ -53,7 +53,7 @@ describe('AppService', () => {
         images => expect(images.length).toEqual(0, 'should have empty images array')
       );
 
-      const req = httpMock.expectOne('http://localhost:3000/api/gallery_film');
+      const req = httpMock.expectOne('https://blooming-reef-68251.herokuapp.com/api/gallery_film');
       expect(req.request.method).toBe('GET');
       req.flush(dummyImages); // Respond with no images
     });
@@ -66,7 +66,7 @@ describe('AppService', () => {
         images => expect(images.length).toEqual(0, 'should return empty images array')
       );
 
-      const req = httpMock.expectOne('http://localhost:3000/api/gallery_film');
+      const req = httpMock.expectOne('https://blooming-reef-68251.herokuapp.com/api/gallery_film');
       expect(req.request.method).toBe('GET');
 
       // respond with a 404 and the error message in the body
@@ -85,7 +85,7 @@ describe('AppService', () => {
       appService.getLandscapeGallery().subscribe(
         images => expect(images).toEqual(dummyImages, 'should return expected images')
     );
-      const req = httpMock.expectOne('http://localhost:3000/api/gallery_landscape');
+      const req = httpMock.expectOne('https://blooming-reef-68251.herokuapp.com/api/gallery_landscape');
       req.flush(dummyImages);
   });
 
@@ -96,7 +96,7 @@ describe('AppService', () => {
         images => expect(images.length).toEqual(0, 'should have empty images array')
       );
 
-      const req = httpMock.expectOne('http://localhost:3000/api/gallery_landscape');
+      const req = httpMock.expectOne('https://blooming-reef-68251.herokuapp.com/api/gallery_landscape');
       expect(req.request.method).toBe('GET');
       req.flush(dummyImages); // Respond with no images
     });
@@ -109,7 +109,7 @@ describe('AppService', () => {
         images => expect(images.length).toEqual(0, 'should return empty images array')
       );
 
-      const req = httpMock.expectOne('http://localhost:3000/api/gallery_landscape');
+      const req = httpMock.expectOne('https://blooming-reef-68251.herokuapp.com/api/gallery_landscape');
       expect(req.request.method).toBe('GET');
 
       // respond with a 404 and the error message in the body

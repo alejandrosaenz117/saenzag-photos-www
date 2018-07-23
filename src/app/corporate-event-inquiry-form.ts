@@ -9,7 +9,8 @@ export class CorporateEventInquiryForm {
         public startDate: Date,
         public endDate: Date,
         public website: string,
-        public additionalInfo: string
+        public additionalInfo: string,
+        public captcha: string
     ) { }
 
 }

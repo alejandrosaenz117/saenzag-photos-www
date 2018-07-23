@@ -2,7 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClient } from '@angular/common/http';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 import { CorporateEventComponent } from './corporate-event.component';
 import { AppService } from '../app.service';
@@ -22,7 +24,9 @@ describe('CorporateEventComponent', () => {
       imports: [
         ReactiveFormsModule,
         NgbModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RecaptchaModule.forRoot(),
+        RecaptchaFormsModule
       ]
     })
     .compileComponents();
@@ -121,6 +125,7 @@ describe('CorporateEventComponent', () => {
     component.corpEventForm.controls['email'].setValue('test@gmail.com');
     component.corpEventForm.controls['startDate'].setValue(startDate);
     component.corpEventForm.controls['endDate'].setValue(endDate);
+    component.corpEventForm.controls['captcha'].setValue('testCaptcha');
     expect(component.corpEventForm.valid).toBeTruthy();
     expect(component.validateDates(component.corpEventForm)).toBeTruthy();
   });

@@ -10,8 +10,6 @@ const request = require('request');
 const bodyParser = require('body-parser')
 
 const assets = path.join(__dirname, '..','..','src', 'assets');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 /* GET api listing. */
 router.get('/', (req, res) => {
@@ -103,7 +101,6 @@ router.post('/contactFormSubmit', function(req, res){
         return res.json({"error": false, "msg":"Failed captcha verification"});
       }
       else if(body.success !== undefined && body.success) {
-        console.log("Success captcha verification")
         var transporter = nodemailer.createTransport({
           service: "Gmail",
           auth: {
@@ -131,33 +128,44 @@ router.post('/contactFormSubmit', function(req, res){
 
 router.post('/corpEventFormSubmit', function(req, res){
   scrubHeaders(res)
-  var transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-        user: config.gmail.user_name,
-        pass: config.gmail.password
+  const gRecaptchaResponseValue = req.body.captcha
+  var secretKey = config.recaptcha.corpevent.secret_key;
+  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponseValue}&remoteip=${req.connection.remoteAddress}`;
+  request(verifyUrl, (err, response, body) => {
+    body = JSON.parse(body)
+    if(body.success !== undefined && !body.success){
+      return res.json({"error": false, "msg":"Failed captcha verification"});
     }
-  })
-  var mailOptions = {
-    from: config.gmail.from,
-    to: config.gmail.mailTo,
-    subject: 'New Corporate Event Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
-    text:  `From: ${req.body.firstName} ${req.body.lastName}
-          \nEmail: ${req.body.email}
-          \nSubject: ${req.body.phone}
-          \nEvent Title: ${req.body.eventTitle}
-          \nStart Date: ${req.body.startDate}
-          \nEnd Date: ${req.body.endDate}
-          \nWebsite: ${req.body.website}
-          \nAdditional Info: ${req.body.additionalInfo}`
-  }
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        res.json({yo: 'error'});
-    }else{
-        res.json({yo: info.response});
-    };
-  })
+    else if(body.success !== undefined && body.success) {
+      var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+            user: config.gmail.user_name,
+            pass: config.gmail.password
+        }
+      })
+      var mailOptions = {
+        from: config.gmail.from,
+        to: config.gmail.mailTo,
+        subject: 'New Corporate Event Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
+        text:  `From: ${req.body.firstName} ${req.body.lastName}
+              \nEmail: ${req.body.email}
+              \nSubject: ${req.body.phone}
+              \nEvent Title: ${req.body.eventTitle}
+              \nStart Date: ${req.body.startDate}
+              \nEnd Date: ${req.body.endDate}
+              \nWebsite: ${req.body.website}
+              \nAdditional Info: ${req.body.additionalInfo}`
+      }
+      transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            res.json({error: 'Error sending email'});
+        }else{
+            res.json({success: 'Email sent successfully'});
+        };
+      })
+    }
+  });
 })
 
 function scrubHeaders(res) {
