@@ -7,8 +7,11 @@ const config = require('../../config');
 const app = express()
 const onHeaders = require('on-headers')
 const request = require('request');
+const bodyParser = require('body-parser')
 
 const assets = path.join(__dirname, '..','..','src', 'assets');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 /* GET api listing. */
 router.get('/', (req, res) => {
@@ -19,7 +22,6 @@ function extension(element) {
   var extName = path.extname(element);
   return extName === '.' + 'DS_Store'; 
 };
-
 router.get('/gallery_landscape', (req, res) => {
   scrubHeaders(res)
   //maybe take in a string to determine which gallery will get returned
@@ -92,20 +94,16 @@ router.get('/couple_engagement', (req, res) => {
 })
 
 router.post('/contactFormSubmit', function(req, res){
-    const gRecaptchaResponse = req.header('g-recaptcha-response')
-    // Secret Key
-    const secretKey = config.recaptcha.secret_key_dev;
-    // Verify URL
-    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponse}&remoteip=${req.connection.remoteAddress}`;
-    // Make Request To VerifyURL
+    const gRecaptchaResponseValue = req.body.captcha
+    var secretKey = config.recaptcha.secret_key_dev;
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponseValue}&remoteip=${req.connection.remoteAddress}`;
     request(verifyUrl, (err, response, body) => {
-      // If Not Successful
+      body = JSON.parse(body)
       if(body.success !== undefined && !body.success){
-        return res.json({"success": false, "msg":"Failed captcha verification"});
+        return res.json({"error": false, "msg":"Failed captcha verification"});
       }
-      //If Successful
       else if(body.success !== undefined && body.success) {
-        res.json({"success": true, "msg":"Captcha passed"});
+        console.log("Success captcha verification")
         var transporter = nodemailer.createTransport({
           service: "Gmail",
           auth: {
@@ -121,10 +119,10 @@ router.post('/contactFormSubmit', function(req, res){
         }
         transporter.sendMail(mailOptions, function(error, info){
           if(error){
-              res.json({yo: 'error'});
+              res.json({error: 'Error sending email'});
           }else{
               scrubHeaders(res)
-              res.json({yo: verifyUrl});
+              res.json({success: 'Email sent successfully'});
           };
         })
       } 

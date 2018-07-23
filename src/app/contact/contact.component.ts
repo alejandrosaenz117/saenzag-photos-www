@@ -18,7 +18,7 @@ export class ContactComponent implements OnChanges {
   contactForm: FormGroup;
 
   resolved(captchaResponse: string) {
-    console.log(`Resolved captcha with response ${captchaResponse}:`);
+    // console.log(`Resolved captcha with response ${captchaResponse}:`);
   }
 
   constructor(private appService: AppService, private fb: FormBuilder) {
@@ -42,7 +42,6 @@ export class ContactComponent implements OnChanges {
 
   onSubmit(contact: FormGroup) {
     this.contactModel = contact.value;
-    console.log(this.contactModel);
     this.appService.submitContactForm(this.contactModel)
       .subscribe(
         success => {
