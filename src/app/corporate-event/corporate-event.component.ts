@@ -16,7 +16,6 @@ export class CorporateEventComponent implements OnChanges {
   submitted = false;
   alertType: String;
   alertMessage: String;
-  captchaSiteKey: String = '6LfpwmUUAAAAAN33yLrToNNR6leqqoIoRDTu0mWH';
 
   constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();

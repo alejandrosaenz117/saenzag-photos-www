@@ -16,7 +16,6 @@ export class ContactComponent implements OnChanges {
   alertMessage: String;
   alertType: String;
   contactForm: FormGroup;
-  captchaSiteKey: String = '6LekdGUUAAAAAJLEDxY-YgntAaMnaWMdHt34aAK3';
 
   constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();
