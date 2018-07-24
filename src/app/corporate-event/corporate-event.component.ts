@@ -16,6 +16,7 @@ export class CorporateEventComponent implements OnChanges {
   submitted = false;
   alertType: String;
   alertMessage: String;
+  captchaSiteKey: String = '6LfpwmUUAAAAAN33yLrToNNR6leqqoIoRDTu0mWH';
 
   constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();
@@ -35,7 +36,8 @@ export class CorporateEventComponent implements OnChanges {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
       website: [''],
-      additionalInfo: ['']
+      additionalInfo: [''],
+      captcha: [null, Validators.required]
     });
   }
 
@@ -51,6 +53,7 @@ export class CorporateEventComponent implements OnChanges {
       endDate: this.corpEventFormModel.endDate,
       website: this.corpEventFormModel.website,
       additionalInfo: this.corpEventFormModel.additionalInfo,
+      captcha: this.corpEventFormModel.captcha
     });
   }
 

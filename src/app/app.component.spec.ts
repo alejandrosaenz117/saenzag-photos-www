@@ -9,6 +9,8 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppService } from './app.service';
 import { MockAppService } from './mock-app.service';
@@ -70,7 +72,9 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule.withRoutes(ROUTES, { useHash: true }),
         NgbModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RecaptchaModule.forRoot(),
+        RecaptchaFormsModule
       ],
       providers: [
         { provide: AppService, useClass: MockAppService }

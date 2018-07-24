@@ -10,7 +10,7 @@ describe('saenzag-photos-www App', () => {
 
   it('should display title', () => {
     page.navigateTo();
-    expect(page.getTitle()).toContain('Saenz A.G. Photography LLC');
+    expect(page.getTitle()).toContain('Saenz A.G. Photography');
   });
 
   it('should display home page', () => {
