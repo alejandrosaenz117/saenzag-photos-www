@@ -16,10 +16,7 @@ export class CorporateEventComponent implements OnChanges {
   submitted = false;
   alertType: String;
   alertMessage: String;
-
-  resolved(captchaResponse: string) {
-     // console.log(`Resolved captcha with response ${captchaResponse}:`);
-  }
+  captchaSiteKey: String = '6LfpwmUUAAAAAN33yLrToNNR6leqqoIoRDTu0mWH';
 
   constructor(private appService: AppService, private fb: FormBuilder) {
     this.createForm();

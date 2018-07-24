@@ -61,7 +61,7 @@
         <textarea formControlName="additionalInfo" type="textarea" class="form-control" id="additionalInfo" placeholder="Additional Info"></textarea>
       </div>
       <div class="form-group">
-          <re-captcha formControlName="captcha" (resolved)="resolved($event)" siteKey="6LfpwmUUAAAAAN33yLrToNNR6leqqoIoRDTu0mWH" style="border-left: 0px"></re-captcha>
+          <re-captcha formControlName="captcha" siteKey="captchaSiteKey" style="border-left: 0px"></re-captcha>
       </div>
       <button [disabled]="!corpEventForm.valid || !validateDates(corpEventForm)" type="submit" class="btn btn-success">Submit</button>
     </form>
