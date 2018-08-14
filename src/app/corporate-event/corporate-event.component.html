@@ -5,13 +5,12 @@
   <div class="col-md-6">
     <h1>Professional Service Inquiry Form</h1>
     <p>Are you looking for a photographer to capture moments at your event? Contact me by filling out the form below!</p>
-    <h2>Rates:</h2>
+    <h2>Included:</h2>
     <ul>
-      <li>50 - 100 photographs per hour</li>
-      <li>A Google Drive link within 48 - 72 hours of event</li>
+      <li>25 - 50 photographs per hour</li>
       <li>Print, web, or both images</li>
+      <li>Photos delivered via Google Drive</li>
     </ul>
-    <p>Price: $200-$500 per hour</p>
     <ngb-alert class="text-center" [type]="alertType" *ngIf="submitted" (close)="submitted=false">{{alertMessage}}</ngb-alert>
     <h2>Please complete the form below:</h2>
     <form [formGroup]="corpEventForm" (ngSubmit)="onSubmit(corpEventForm)">
