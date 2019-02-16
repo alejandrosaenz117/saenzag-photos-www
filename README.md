@@ -10,14 +10,12 @@ Install the latest version of [Node](https://nodejs.org/en/)
 Install [Angular CLI](https://github.com/angular/angular-cli)
 *  `npm install -g @angular/cli`
 
-To install the project dependencies, you will need to install [Yarn](https://yarnpkg.com/en/docs/install).
-* `brew update`
-* `npm install -g yarn`
-* `yarn`
+Install the project dependencies
+* `npm i`
 
 ## Server
 
-Run `yarn start` for a dev server. Navigate to `http://localhost:4200/` for dev and `http://localhost:3000/` for prod. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/` for dev and `http://localhost:3000/` for prod. The app will automatically reload if you change any of the source files.
 
 ##### Please note:  config.js is empty!  Emails will not work!
 
