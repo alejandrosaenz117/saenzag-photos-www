@@ -1,10 +1,9 @@
 #portrait {
-    object-fit: cover;
-    height: 100%;
-    width: 350px;
+  object-fit: cover;
+  height: 100%;
+  width: 350px;
 }
 
 body {
-    margin-bottom: 60px;
-
+  margin-bottom: 60px;
 }

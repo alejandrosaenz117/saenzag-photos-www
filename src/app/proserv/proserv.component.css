@@ -1,20 +1,22 @@
 #proserv-card {
-    object-fit: cover;
-    padding: 15px;
-    height: 350px;
+  object-fit: cover;
+  padding: 15px;
+  height: 350px;
 }
 
-p, ul, li {
-    font-family: Verdana, Geneva, sans-serif;
-    text-transform: none;
-    letter-spacing: .04em;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 13px;
-    color: gray;
+p,
+ul,
+li {
+  font-family: Verdana, Geneva, sans-serif;
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  color: gray;
 }
 
-.btn  {
-    font-family: Verdana, Geneva, sans-serif;
-    font-size: 13px;
+.btn {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 13px;
 }

@@ -1,14 +1,13 @@
-import { Component, OnChanges } from '@angular/core';
-import { AppService } from '../app.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnChanges } from "@angular/core";
+import { AppService } from "../app.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { Contact } from '../contact';
-
+import { Contact } from "../contact";
 
 @Component({
-  selector: 'app-contact',
-  templateUrl: './contact.component.html',
-  styleUrls: ['./contact.component.css']
+  selector: "app-contact",
+  templateUrl: "./contact.component.html",
+  styleUrls: ["./contact.component.css"]
 })
 export class ContactComponent implements OnChanges {
   public contactModel: Contact;
@@ -27,30 +26,30 @@ export class ContactComponent implements OnChanges {
 
   createForm() {
     this.contactForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      subject: ['', Validators.required],
-      message: ['', [Validators.required, Validators.maxLength(250)]],
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]],
+      subject: ["", Validators.required],
+      message: ["", [Validators.required, Validators.maxLength(250)]],
       captcha: [null, Validators.required]
     });
   }
 
   onSubmit(contact: FormGroup) {
     this.contactModel = contact.value;
-    this.appService.submitContactForm(this.contactModel)
-      .subscribe(
-        success => {
-          this.alertMessage = 'Thank you for your submission!  We will get back to you ASAP!';
-          this.alertType = 'success';
-          this.submitted = true;
-        },
-        error => {
-          this.alertMessage = 'Something went wrong!  Please try again later.';
-          this.alertType = 'danger';
-          this.submitted = true;
-        }
-      );
+    this.appService.submitContactForm(this.contactModel).subscribe(
+      success => {
+        this.alertMessage =
+          "Thank you for your submission!  We will get back to you ASAP!";
+        this.alertType = "success";
+        this.submitted = true;
+      },
+      error => {
+        this.alertMessage = "Something went wrong!  Please try again later.";
+        this.alertType = "danger";
+        this.submitted = true;
+      }
+    );
     this.contactForm.reset();
   }
 
@@ -64,5 +63,4 @@ export class ContactComponent implements OnChanges {
       captcha: this.contactModel.captcha
     });
   }
-
 }

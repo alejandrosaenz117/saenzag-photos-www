@@ -1,37 +1,33 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterModule } from "@angular/router";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HttpClientTestingModule } from "@angular/common/http/testing";
+import { HttpClient } from "@angular/common/http";
 
-import { CoupleEngagementComponent } from './couple-engagement.component';
-import { AppService } from '../app.service';
+import { CoupleEngagementComponent } from "./couple-engagement.component";
+import { AppService } from "../app.service";
 
 const ROUTES = [
   {
-    path: 'proserv/couple-engagement',
+    path: "proserv/couple-engagement",
     component: CoupleEngagementComponent
   }
 ];
 
-describe('CoupleEngagementComponent', () => {
+describe("CoupleEngagementComponent", () => {
   let component: CoupleEngagementComponent;
   let fixture: ComponentFixture<CoupleEngagementComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CoupleEngagementComponent ],
-      providers: [
-        AppService,
-        HttpClient
-      ],
+      declarations: [CoupleEngagementComponent],
+      providers: [AppService, HttpClient],
       imports: [
-        RouterModule.forRoot(ROUTES, {useHash: true}),
+        RouterModule.forRoot(ROUTES, { useHash: true }),
         NgbModule,
         HttpClientTestingModule
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -40,7 +36,7 @@ describe('CoupleEngagementComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,81 +1,80 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
-import { RecaptchaModule } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { ReactiveFormsModule } from "@angular/forms";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HttpClientModule } from "@angular/common/http";
+import { RecaptchaModule } from "ng-recaptcha";
+import { RecaptchaFormsModule } from "ng-recaptcha/forms";
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
 
-import { AppService } from './app.service';
+import { AppService } from "./app.service";
 
-import { AppComponent } from './app.component';
-import { NavigationComponent } from './navigation/navigation.component';
-import { FooterComponent } from './footer/footer.component';
-import { CarouselComponent } from './carousel/carousel.component';
-import { VideographyComponent } from './videography/videography.component';
-import { AboutComponent } from './about/about.component';
-import { ContactComponent } from './contact/contact.component';
-import { ProservComponent } from './proserv/proserv.component';
-import { CorporateEventComponent } from './corporate-event/corporate-event.component';
-import { CoupleEngagementComponent } from './couple-engagement/couple-engagement.component';
-import { FamilyPortraitComponent } from './family-portrait/family-portrait.component';
-
+import { AppComponent } from "./app.component";
+import { NavigationComponent } from "./navigation/navigation.component";
+import { FooterComponent } from "./footer/footer.component";
+import { CarouselComponent } from "./carousel/carousel.component";
+import { VideographyComponent } from "./videography/videography.component";
+import { AboutComponent } from "./about/about.component";
+import { ContactComponent } from "./contact/contact.component";
+import { ProservComponent } from "./proserv/proserv.component";
+import { CorporateEventComponent } from "./corporate-event/corporate-event.component";
+import { CoupleEngagementComponent } from "./couple-engagement/couple-engagement.component";
+import { FamilyPortraitComponent } from "./family-portrait/family-portrait.component";
 
 const ROUTES = [
   {
-    path: '',
-    redirectTo: 'landscape',
-    pathMatch: 'full'
+    path: "",
+    redirectTo: "landscape",
+    pathMatch: "full"
   },
   {
-    path: 'landscape',
+    path: "landscape",
     component: CarouselComponent
   },
   {
-    path: 'film',
+    path: "film",
     component: CarouselComponent
   },
   {
-    path: 'maternity',
+    path: "maternity",
     component: CarouselComponent
   },
   {
-    path: 'night_colors',
+    path: "night_colors",
     component: CarouselComponent
   },
   {
-    path: 'family_portraits',
+    path: "family_portraits",
     component: CarouselComponent
   },
   {
-    path: 'videography',
+    path: "videography",
     component: VideographyComponent
   },
   {
-    path: 'about',
+    path: "about",
     component: AboutComponent
   },
   {
-    path: 'contact',
+    path: "contact",
     component: ContactComponent
   },
   {
-    path: 'proserv',
+    path: "proserv",
     component: ProservComponent
   },
   {
-    path: 'proserv/corp-event-inquiry',
+    path: "proserv/corp-event-inquiry",
     component: CorporateEventComponent
   },
   {
-    path: 'proserv/family-portrait',
+    path: "proserv/family-portrait",
     component: FamilyPortraitComponent
   },
   {
-    path: 'proserv/couple-engagement',
+    path: "proserv/couple-engagement",
     component: CoupleEngagementComponent
   }
 ];
@@ -98,12 +97,12 @@ const ROUTES = [
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES, {useHash: true}),
+    RouterModule.forRoot(ROUTES, { useHash: true }),
     NgbModule.forRoot(),
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule
   ],
-  providers: [ AppService, HttpClient ],
+  providers: [AppService, HttpClient],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

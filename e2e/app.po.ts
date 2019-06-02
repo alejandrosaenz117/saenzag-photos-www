@@ -1,17 +1,17 @@
-import { browser, by, element, ElementFinder } from 'protractor';
-import { elementAt } from 'rxjs/operators';
+import { browser, by, element, ElementFinder } from "protractor";
+import { elementAt } from "rxjs/operators";
 
 export class AppPage {
   navigateTo() {
-    return browser.get('/');
+    return browser.get("/");
   }
 
   getIconCount() {
-    return element(by.css('app-root')).getAttribute('ng-version');
+    return element(by.css("app-root")).getAttribute("ng-version");
   }
 
   getHomePageByIcon() {
-    return element(by.css('app-root img')).click();
+    return element(by.css("app-root img")).click();
   }
 
   getTitle() {
@@ -23,51 +23,70 @@ export class AppPage {
   }
 
   getNavBar(): ElementFinder {
-    return element(by.tagName('nav'));
+    return element(by.tagName("nav"));
   }
 
   getGalleries(): ElementFinder {
-    return this.getNavBar().all(by.css('li')).get(0);
+    return this.getNavBar()
+      .all(by.css("li"))
+      .get(0);
   }
 
   getVideography(): ElementFinder {
-    return this.getNavBar().all(by.css('li')).get(1);
+    return this.getNavBar()
+      .all(by.css("li"))
+      .get(1);
   }
 
   getProserv(): ElementFinder {
-    return this.getNavBar().all(by.css('li')).get(2);
+    return this.getNavBar()
+      .all(by.css("li"))
+      .get(2);
   }
 
   getShop(): ElementFinder {
-    return this.getNavBar().all(by.css('li')).get(3);
+    return this.getNavBar()
+      .all(by.css("li"))
+      .get(3);
   }
 
   getAbout(): ElementFinder {
-    return this.getNavBar().all(by.css('li')).get(4);
+    return this.getNavBar()
+      .all(by.css("li"))
+      .get(4);
   }
 
   getContact(): ElementFinder {
-    return this.getNavBar().all(by.css('li')).get(5);
+    return this.getNavBar()
+      .all(by.css("li"))
+      .get(5);
   }
 
   getFooter(): ElementFinder {
-    return element(by.tagName('footer'));
+    return element(by.tagName("footer"));
   }
 
   getFacebook(): ElementFinder {
-    return this.getFooter().all(by.css('a')).get(0);
+    return this.getFooter()
+      .all(by.css("a"))
+      .get(0);
   }
 
   getTwitter(): ElementFinder {
-    return this.getFooter().all(by.css('a')).get(1);
+    return this.getFooter()
+      .all(by.css("a"))
+      .get(1);
   }
 
   getInstagram(): ElementFinder {
-    return this.getFooter().all(by.css('a')).get(2);
+    return this.getFooter()
+      .all(by.css("a"))
+      .get(2);
   }
 
   getYoutube(): ElementFinder {
-    return this.getFooter().all(by.css('a')).get(3);
+    return this.getFooter()
+      .all(by.css("a"))
+      .get(3);
   }
-
 }

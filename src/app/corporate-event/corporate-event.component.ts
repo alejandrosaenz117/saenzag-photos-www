@@ -1,14 +1,13 @@
-import { Component, OnChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnChanges } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
-import { AppService } from '../app.service';
-import { CorporateEventInquiryForm } from '../corporate-event-inquiry-form';
-
+import { AppService } from "../app.service";
+import { CorporateEventInquiryForm } from "../corporate-event-inquiry-form";
 
 @Component({
-  selector: 'app-corporate-event',
-  templateUrl: './corporate-event.component.html',
-  styleUrls: ['./corporate-event.component.css']
+  selector: "app-corporate-event",
+  templateUrl: "./corporate-event.component.html",
+  styleUrls: ["./corporate-event.component.css"]
 })
 export class CorporateEventComponent implements OnChanges {
   corpEventFormModel: CorporateEventInquiryForm;
@@ -27,19 +26,18 @@ export class CorporateEventComponent implements OnChanges {
 
   createForm() {
     this.corpEventForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [ Validators.email, Validators.required ]],
-      phone: [''],
-      eventTitle: [''],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      website: [''],
-      additionalInfo: [''],
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      email: ["", [Validators.email, Validators.required]],
+      phone: [""],
+      eventTitle: [""],
+      startDate: ["", Validators.required],
+      endDate: ["", Validators.required],
+      website: [""],
+      additionalInfo: [""],
       captcha: [null, Validators.required]
     });
   }
-
 
   rebuildForm() {
     this.corpEventForm.reset({
@@ -58,17 +56,19 @@ export class CorporateEventComponent implements OnChanges {
 
   onSubmit(form: FormGroup) {
     this.corpEventFormModel = form.value;
-    this.appService.submitCorporateEventForm(this.corpEventFormModel)
+    this.appService
+      .submitCorporateEventForm(this.corpEventFormModel)
       // TODO:  Create success message!
       .subscribe(
         success => {
-          this.alertMessage = 'Thank you for your submission!  We will get back to you ASAP!';
-          this.alertType = 'success';
+          this.alertMessage =
+            "Thank you for your submission!  We will get back to you ASAP!";
+          this.alertType = "success";
           this.submitted = true;
         },
         error => {
-          this.alertMessage = 'Something went wrong!  Please try again later.';
-          this.alertType = 'danger';
+          this.alertMessage = "Something went wrong!  Please try again later.";
+          this.alertType = "danger";
           this.submitted = true;
         }
       );
@@ -76,13 +76,12 @@ export class CorporateEventComponent implements OnChanges {
   }
 
   validateDates(form: FormGroup) {
-    if (form.controls['endDate'] && form.controls['startDate']) {
-      if (form.controls['startDate'].value <= form.controls['endDate'].value) {
-          return true;
+    if (form.controls["endDate"] && form.controls["startDate"]) {
+      if (form.controls["startDate"].value <= form.controls["endDate"].value) {
+        return true;
       } else {
-          return false;
+        return false;
       }
     }
   }
-
 }

@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-videography',
-  templateUrl: './videography.component.html',
-  styleUrls: ['./videography.component.css']
+  selector: "app-videography",
+  templateUrl: "./videography.component.html",
+  styleUrls: ["./videography.component.css"]
 })
 export class VideographyComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

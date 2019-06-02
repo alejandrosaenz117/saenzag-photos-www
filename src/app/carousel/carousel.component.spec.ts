@@ -1,10 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AppService } from '../app.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpClient } from '@angular/common/http';
-import { CarouselComponent } from './carousel.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { AppService } from "../app.service";
+import {
+  HttpClientTestingModule,
+  HttpTestingController
+} from "@angular/common/http/testing";
+import { HttpClient } from "@angular/common/http";
+import { CarouselComponent } from "./carousel.component";
+import { RouterTestingModule } from "@angular/router/testing";
 
 class MockAppService extends AppService {
   /**
@@ -14,47 +17,42 @@ class MockAppService extends AppService {
    */
 }
 
-
-describe('CarouselComponent', () => {
+describe("CarouselComponent", () => {
   let fixture: ComponentFixture<CarouselComponent>;
 
   const ROUTES = [
     {
-      path: 'landscape',
+      path: "landscape",
       component: CarouselComponent
     },
     {
-      path: 'film',
+      path: "film",
       component: CarouselComponent
     },
     {
-      path: 'maternity',
+      path: "maternity",
       component: CarouselComponent
     },
     {
-      path: 'night_colors',
+      path: "night_colors",
       component: CarouselComponent
     },
     {
-      path: 'family_portraits',
+      path: "family_portraits",
       component: CarouselComponent
     }
   ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CarouselComponent ],
+      declarations: [CarouselComponent],
       imports: [
         NgbModule,
         HttpClientTestingModule,
-        RouterTestingModule.withRoutes(ROUTES, {useHash: true}),
+        RouterTestingModule.withRoutes(ROUTES, { useHash: true })
       ],
-      providers: [
-        {provide: AppService, useClass: MockAppService },
-        HttpClient
-      ]
-    })
-    .compileComponents();
+      providers: [{ provide: AppService, useClass: MockAppService }, HttpClient]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -62,6 +60,4 @@ describe('CarouselComponent', () => {
     const component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-
 });
