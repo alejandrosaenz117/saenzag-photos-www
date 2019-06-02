@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-  - "10"
+  - '10'
 
 before_script:
   - npm install
 
-script:  
+script:
   - ng lint
+  - npm run test-headless
   - npm run build
