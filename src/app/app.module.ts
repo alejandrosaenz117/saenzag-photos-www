@@ -99,7 +99,7 @@ const ROUTES = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES, {useHash: true}),
-    NgbModule.forRoot(),
+    NgbModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule
   ],
