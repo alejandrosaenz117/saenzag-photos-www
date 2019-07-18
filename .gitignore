@@ -47,3 +47,6 @@ Thumbs.db
 # Config
 config-actual.js
 .env
+
+# Monitoring
+newrelic_agent.log
