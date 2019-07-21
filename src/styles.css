@@ -41,6 +41,17 @@ h2 {
     color: lightgray;
 }
 
+h3 {
+  font-family: Verdana, Geneva, sans-serif;
+  text-transform: none;
+  letter-spacing: .04em;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+  padding: 10px;
+  color: gray;
+}
+
 p, ul, li {
   font-family: Verdana, Geneva, sans-serif;
   text-transform: none;
@@ -69,5 +80,15 @@ p, ul, li {
 
 .alert {
   padding: 10px;
+}
+
+.sales-tax {
+  font-family: Verdana, Geneva, sans-serif;
+  text-transform: none;
+  letter-spacing: .04em;
+  font-weight: bold;
+  font-style: normal;
+  font-size: 13px;
+  color: gray;
 }
 
