@@ -4,27 +4,23 @@ const fs = require('fs')
 var path = require('path');
 const nodemailer = require('nodemailer')
 const config = require('../../config');
-const app = express()
 const onHeaders = require('on-headers')
 const request = require('request');
+const firebase = require('../firebase/firebase.controller')
 
-const assets = path.join(__dirname, '..','..','src', 'assets');
+const assets = path.join(__dirname, '..', '..', 'src', 'assets');
 
 /* GET api listing. */
 router.get('/', (req, res) => {
   scrubHeaders(res)
 });
 
-function extension(element) {
-  var extName = path.extname(element);
-  return extName === '.' + 'DS_Store'; 
-};
 router.get('/gallery_landscape', (req, res) => {
   scrubHeaders(res)
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_landscape').forEach(file => {
-      images.push('../../assets/gallery_landscape/' + file)
+    images.push('../../assets/gallery_landscape/' + file)
   })
   //Removes .DS_Store
   images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
@@ -36,7 +32,7 @@ router.get('/gallery_film', (req, res) => {
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_film').forEach(file => {
-      images.push('../../assets/gallery_film/' + file)
+    images.push('../../assets/gallery_film/' + file)
   })
   //Removes .DS_Store
   images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
@@ -48,7 +44,7 @@ router.get('/gallery_maternity', (req, res) => {
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_maternity').forEach(file => {
-      images.push('../../assets/gallery_maternity/' + file)
+    images.push('../../assets/gallery_maternity/' + file)
   })
   //Removes .DS_Store
   images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
@@ -60,7 +56,7 @@ router.get('/gallery_night_colors', (req, res) => {
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_night_colors').forEach(file => {
-      images.push('../../assets/gallery_night_colors/' + file)
+    images.push('../../assets/gallery_night_colors/' + file)
   })
   //Removes .DS_Store
   images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
@@ -72,7 +68,7 @@ router.get('/gallery_family_portraits', (req, res) => {
   //maybe take in a string to determine which gallery will get returned
   images = [];
   fs.readdirSync(assets + '/gallery_family_portraits').forEach(file => {
-      images.push('../../assets/gallery_family_portraits/' + file)
+    images.push('../../assets/gallery_family_portraits/' + file)
   })
   //Removes .DS_Store
   images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
@@ -83,71 +79,71 @@ router.get('/couple_engagement', (req, res) => {
   scrubHeaders(res)
   images = [];
   fs.readdirSync(assets + '/proserv/couple-engagement').forEach(file => {
-      images.push('../../assets/proserv/couple-engagement/' + file)
+    images.push('../../assets/proserv/couple-engagement/' + file)
   })
   //Removes .DS_Store
   images = images.filter(item => !(/(^|\/)\.[^\/\.]/g).test(item));
   res.status(200).json(images)
 })
 
-router.post('/contactFormSubmit', function(req, res){
-    const gRecaptchaResponseValue = req.body.captcha
-    var secretKey = config.recaptcha.secret_key;
-    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponseValue}&remoteip=${req.connection.remoteAddress}`;
-    request(verifyUrl, (err, response, body) => {
-      body = JSON.parse(body)
-      if(body.success !== undefined && !body.success){
-        return res.json({"error": false, "msg":"Failed captcha verification"});
-      }
-      else if(body.success !== undefined && body.success) {
-        var transporter = nodemailer.createTransport({
-          service: "Gmail",
-          auth: {
-              user: config.gmail.user_name,
-              pass: config.gmail.password
-          }
-        })
-        var mailOptions = {
-          from: config.gmail.from,
-          to: config.gmail.mailTo,
-          subject: 'New Contact Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
-          text: `From: ${req.body.firstName} ${req.body.lastName}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
+router.post('/contactFormSubmit', function (req, res) {
+  const gRecaptchaResponseValue = req.body.captcha
+  var secretKey = config.recaptcha.secret_key;
+  const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponseValue}&remoteip=${req.connection.remoteAddress}`;
+  request(verifyUrl, (err, response, body) => {
+    body = JSON.parse(body)
+    if (body.success !== undefined && !body.success) {
+      return res.json({ "error": false, "msg": "Failed captcha verification" });
+    }
+    else if (body.success !== undefined && body.success) {
+      var transporter = nodemailer.createTransport({
+        service: "Gmail",
+        auth: {
+          user: config.gmail.user_name,
+          pass: config.gmail.password
         }
-        transporter.sendMail(mailOptions, function(error, info){
-          if(error){
-              res.json({error: 'Error sending email'});
-          }else{
-              scrubHeaders(res)
-              res.json({success: 'Email sent successfully'});
-          };
-        })
-      } 
-    });
+      })
+      var mailOptions = {
+        from: config.gmail.from,
+        to: config.gmail.mailTo,
+        subject: 'New Contact Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
+        text: `From: ${req.body.firstName} ${req.body.lastName}\nEmail: ${req.body.email}\nSubject: ${req.body.subject}\nMessage: ${req.body.message}`
+      }
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          res.json({ error: 'Error sending email' });
+        } else {
+          scrubHeaders(res)
+          res.json({ success: 'Email sent successfully' });
+        };
+      })
+    }
+  });
 })
 
-router.post('/corpEventFormSubmit', function(req, res){
+router.post('/corpEventFormSubmit', function (req, res) {
   scrubHeaders(res)
   const gRecaptchaResponseValue = req.body.captcha
   var secretKey = config.recaptcha.corpevent.secret_key;
   const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${gRecaptchaResponseValue}&remoteip=${req.connection.remoteAddress}`;
   request(verifyUrl, (err, response, body) => {
     body = JSON.parse(body)
-    if(body.success !== undefined && !body.success){
-      return res.json({"error": false, "msg":"Failed captcha verification"});
+    if (body.success !== undefined && !body.success) {
+      return res.json({ "error": false, "msg": "Failed captcha verification" });
     }
-    else if(body.success !== undefined && body.success) {
+    else if (body.success !== undefined && body.success) {
       var transporter = nodemailer.createTransport({
         service: "Gmail",
         auth: {
-            user: config.gmail.user_name,
-            pass: config.gmail.password
+          user: config.gmail.user_name,
+          pass: config.gmail.password
         }
       })
       var mailOptions = {
         from: config.gmail.from,
         to: config.gmail.mailTo,
         subject: 'New Corporate Event Form Submission from ' + req.body.firstName + ' ' + req.body.lastName, // Subject line
-        text:  `From: ${req.body.firstName} ${req.body.lastName}
+        text: `From: ${req.body.firstName} ${req.body.lastName}
               \nEmail: ${req.body.email}
               \nSubject: ${req.body.phone}
               \nEvent Title: ${req.body.eventTitle}
@@ -156,16 +152,32 @@ router.post('/corpEventFormSubmit', function(req, res){
               \nWebsite: ${req.body.website}
               \nAdditional Info: ${req.body.additionalInfo}`
       }
-      transporter.sendMail(mailOptions, function(error, info){
-        if(error){
-            res.json({error: 'Error sending email'});
-        }else{
-            res.json({success: 'Email sent successfully'});
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          res.json({ error: 'Error sending email' });
+        } else {
+          res.json({ success: 'Email sent successfully' });
         };
       })
     }
   });
 })
+
+router.get('/onAuthStateChanged', async (req, res, cb) => {
+  let authState = await firebase.onAuthStateChanged(cb);
+  if (authState)
+    console.log(authState)
+  res.status(200).json(authState)
+});
+
+router.post('/register', async (req, res) => {
+  await firebase.createUserWithEmailAndPassword(req.body.email, req.body.password);
+});
+
+router.post('/login', async (req, res) => {
+  let user = await firebase.signInWithEmailAndPassword(req.body.email, req.body.password);
+  res.send(user)
+});
 
 function scrubHeaders(res) {
   onHeaders(res, function () {
@@ -173,9 +185,5 @@ function scrubHeaders(res) {
     this.removeHeader('Server')
   })
 }
-function subscribe(gRecaptchaResponse) {
-
-}
-
 
 module.exports = router;

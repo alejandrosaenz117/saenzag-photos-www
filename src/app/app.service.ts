@@ -12,6 +12,7 @@ export class AppService {
   constructor(private http: HttpClient) { }
 
   api = 'https://blooming-reef-68251.herokuapp.com/api';
+  //api = 'http://localhost:5000/api';
 
   getLandscapeGallery(): Observable<String[]> {
     return this.http.get<String[]>(`${this.api}/gallery_landscape`)
@@ -61,6 +62,21 @@ export class AppService {
 
   submitCorporateEventForm(corpEventForm: CorporateEventInquiryForm) {
     return this.http.post(`${this.api}/corpEventFormSubmit`, corpEventForm);
+  }
+
+  onAuthStateChanged() {
+    return this.http.get(`${this.api}/onAuthStateChanged`).subscribe((res) => {
+      console.log(res)
+    })
+  }
+
+  createUserWithEmailAndPassword(registration) {
+    return this.http.post(`${this.api}/register`, registration);
+  }
+
+  signInWithEmailAndPassword(registration) {
+    console.log(registration, this.api)
+    return this.http.post(`${this.api}/login`, registration);
   }
 
   private handleError(error: HttpErrorResponse) {

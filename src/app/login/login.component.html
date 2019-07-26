@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div id="formContent">
+    <!-- Login Form -->
+    <form style="padding-top: 20px" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+      <input formControlName="email" type="text" id="email" class="form-control" name="email" placeholder="Email"
+        required>
+      <input formControlName="password" type="password" id="password" class="form-control" name="password"
+        placeholder="Password" required>
+      <input [disabled]="!loginForm.valid" type="submit" class="btn btn-success" value="Log In">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <div>
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+      <div>
+        <a class="underlineHover" href="#">Forgot Email?</a>
+      </div>
+      <div>
+        <a class="underlineHover" href="#/registration">Register</a>
+      </div>
+    </div>
+
+  </div>
+</div>
