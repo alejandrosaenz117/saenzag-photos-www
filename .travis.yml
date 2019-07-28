@@ -3,9 +3,8 @@ node_js:
   - '10'
 
 before_script:
-  - npm install
+  - npm ci
 
 script:
-  - ng lint
   - npm run test-headless
   - npm run build
