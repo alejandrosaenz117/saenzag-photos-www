@@ -10,7 +10,7 @@ import { RegistrationComponent } from './registration.component';
 import { AppService } from '../app.service';
 import { MockAppService } from '../mock-app.service';
 
-fdescribe('RegistrationComponent', () => {
+describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
