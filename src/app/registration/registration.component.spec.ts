@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { RegistrationComponent } from './registration.component';
+import { AppService } from '../app.service';
+import { MockAppService } from '../mock-app.service';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -8,9 +12,10 @@ describe('RegistrationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegistrationComponent ]
-    })
-    .compileComponents();
+      declarations: [RegistrationComponent],
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
+      providers: [{ provide: AppService, useClass: MockAppService }]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

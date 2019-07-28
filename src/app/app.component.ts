@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppService } from './app.service'
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +10,7 @@ export class AppComponent {
   title = 'app';
   isCollapsed = true;
 
-  constructor(public appService: AppService) {
-    this.appService.onAuthStateChanged()
-  }
-
+  constructor(public appService: AppService) {}
 
   toggleMenu() {
     this.isCollapsed = !this.isCollapsed;
