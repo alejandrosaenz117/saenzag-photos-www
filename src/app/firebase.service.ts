@@ -36,6 +36,10 @@ export class FirebaseService {
     }
   }
 
+  createUserWithEmailAndPassword(email, pass) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, pass);
+  }
+
   logout() {
     this.afAuth.auth.signOut().then(_ => {
       location.reload();
