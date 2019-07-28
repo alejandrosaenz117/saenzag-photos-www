@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <div id="formContent">
+    <!-- Login Form -->
+    <form style="padding-top: 20px" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)">
+      <input
+        formControlName="email"
+        type="text"
+        id="email"
+        class="form-control"
+        name="email"
+        placeholder="Email"
+        required
+      />
+      <input
+        formControlName="password"
+        type="password"
+        id="password"
+        class="form-control"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      <input [disabled]="!registerForm.valid" type="submit" class="btn btn-success" value="Register" />
+    </form>
+  </div>
+</div>

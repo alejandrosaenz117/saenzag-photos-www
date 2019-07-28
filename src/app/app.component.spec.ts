@@ -7,14 +7,16 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { VideographyComponent } from './videography/videography.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AppService } from './app.service';
 import { MockAppService } from './mock-app.service';
-
+import { environment } from '../environments/environment';
 
 const ROUTES = [
   {
@@ -57,7 +59,6 @@ const ROUTES = [
 ];
 
 describe('AppComponent', () => {
-
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -74,11 +75,12 @@ describe('AppComponent', () => {
         NgbModule,
         ReactiveFormsModule,
         RecaptchaModule.forRoot(),
-        RecaptchaFormsModule
+        RecaptchaFormsModule,
+        HttpClientTestingModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule
       ],
-      providers: [
-        { provide: AppService, useClass: MockAppService }
-      ]
+      providers: [{ provide: AppService, useClass: MockAppService }]
     }).compileComponents();
   }));
 
@@ -87,5 +89,4 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-
 });

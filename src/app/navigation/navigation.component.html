@@ -1,22 +1,38 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">
-      <img id="navbarIcon" src="../../assets/SaenzAGLogoBlack.png" class="d-inline-block align-top" alt="">
+    <img id="navbarIcon" src="../../assets/SaenzAGLogoBlack.png" class="d-inline-block align-top" alt="" />
   </a>
-  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <button
+    class="navbar-toggler ml-auto"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNav"
+    aria-controls="navbarNav"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item dropdown ml-auto">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Galleries 
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Galleries
         </a>
         <div class="dropdown-menu" style="font-size: 12px; opacity: 0.9;" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#/landscape">Landscape</a>
-            <a class="dropdown-item" href="#/film">Film</a>
-            <a class="dropdown-item" href="#/maternity">Maternity</a>
-            <a class="dropdown-item" href="#/night_colors">Night Colors</a>
-            <a class="dropdown-item" href="#/family_portraits">Family Portraits</a>
+          <a class="dropdown-item" href="#/landscape">Landscape</a>
+          <a class="dropdown-item" href="#/film">Film</a>
+          <a class="dropdown-item" href="#/maternity">Maternity</a>
+          <a class="dropdown-item" href="#/night_colors">Night Colors</a>
+          <a class="dropdown-item" href="#/family_portraits">Family Portraits</a>
         </div>
       </li>
       <li class="nav-item ml-auto">
@@ -28,14 +44,15 @@
       <li class="nav-item ml-auto">
         <a class="nav-link" href="https://www.facebook.com/pg/saenzagphotos/shop/#" target="_blank">Shop Prints</a>
       </li>
-      <!-- <li class="nav-item">  //Future development
-          <a class="nav-link" href="#">Blog</a>
-      </li>-->
       <li class="nav-item ml-auto">
-          <a class="nav-link" href="#/about">About</a>
+        <a class="nav-link" href="#/about">About</a>
       </li>
       <li class="nav-item ml-auto">
-          <a class="nav-link" href="#/contact">Contact</a>
+        <a class="nav-link" href="#/contact">Contact</a>
+      </li>
+      <li class="nav-item ml-auto">
+        <a class="nav-link" href="#/login" *ngIf="!afAuth.userDetails">Login</a>
+        <a class="nav-link" href="#/login" *ngIf="afAuth.userDetails" (click)="logout()">Logout</a>
       </li>
     </ul>
   </div>
