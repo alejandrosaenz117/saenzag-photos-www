@@ -6,6 +6,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
@@ -21,7 +23,7 @@ import { CoupleEngagementComponent } from './couple-engagement/couple-engagement
 import { FamilyPortraitComponent } from './family-portrait/family-portrait.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-
+import { environment } from '../environments/environment';
 
 const ROUTES = [
   {
@@ -110,9 +112,11 @@ const ROUTES = [
     RouterModule.forRoot(ROUTES, { useHash: true }),
     NgbModule,
     RecaptchaModule.forRoot(),
-    RecaptchaFormsModule
+    RecaptchaFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
   providers: [AppService, HttpClient],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

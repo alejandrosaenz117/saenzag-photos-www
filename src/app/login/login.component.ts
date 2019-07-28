@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AppService } from '../app.service';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { FirebaseService } from '../firebase.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,12 +11,16 @@ import { AppService } from '../app.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, public appService: AppService) {
+  constructor(
+    private fb: FormBuilder,
+    public afAuth: AngularFireAuth,
+    public router: Router,
+    public firebaseService: FirebaseService
+  ) {
     this.createForm();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   createForm() {
     this.loginForm = this.fb.group({
@@ -24,9 +30,15 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(creds) {
-    this.appService.signInWithEmailAndPassword(creds.value).subscribe((res) => {
-      console.log(res)
-    });
+    this.firebaseService.signInWithEmailAndPassword(
+      creds.value.email,
+      creds.value.password
+    );
   }
 
+  logout() {
+    this.afAuth.auth.signOut().then(_ => {
+      this.router.navigate(['/landscape']);
+    });
+  }
 }
