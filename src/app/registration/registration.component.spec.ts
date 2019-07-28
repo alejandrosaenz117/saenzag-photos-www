@@ -10,7 +10,7 @@ import { RegistrationComponent } from './registration.component';
 import { AppService } from '../app.service';
 import { MockAppService } from '../mock-app.service';
 
-describe('RegistrationComponent', () => {
+fdescribe('RegistrationComponent', () => {
   let component: RegistrationComponent;
   let fixture: ComponentFixture<RegistrationComponent>;
 
@@ -37,5 +37,33 @@ describe('RegistrationComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('form invalid when empty', () => {
+    expect(component.registerForm.valid).toBeFalsy();
+  });
+
+  it('should be invalid if email is empty', () => {
+    const email = component.registerForm.controls['email'];
+    expect(email.valid).toBeFalsy();
+  });
+
+  it('should be invalid if email is not correctly formatted', () => {
+    component.registerForm.controls['email'].setValue('test@test..');
+    expect(component.registerForm.controls['email'].valid).toBeFalsy();
+    component.registerForm.controls['email'].setValue('test');
+    expect(component.registerForm.controls['email'].valid).toBeFalsy();
+  });
+
+  it('password field validity', () => {
+    const password = component.registerForm.controls['password'];
+    expect(password.valid).toBeFalsy();
+  });
+
+  it('registration form should be valid', () => {
+    expect(component.registerForm.valid).toBeFalsy();
+    component.registerForm.controls['email'].setValue('test@gmail.com');
+    component.registerForm.controls['password'].setValue('testpassword123');
+    expect(component.registerForm.valid).toBeTruthy();
   });
 });
