@@ -1,3 +1,6 @@
+<ngb-alert class="text-center" [type]="alertType" *ngIf="submitted && alertMessage" (close)="submitted = false">{{
+  alertMessage
+}}</ngb-alert>
 <div class="wrapper">
   <div id="formContent">
     <!-- Login Form -->

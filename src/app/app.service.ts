@@ -45,10 +45,6 @@ export class AppService {
     return this.http.post(`${this.api}/corpEventFormSubmit`, corpEventForm);
   }
 
-  createUserWithEmailAndPassword(registration) {
-    return this.http.post(`${this.api}/register`, registration);
-  }
-
   signInWithEmailAndPassword(registration) {
     return this.http.post(`${this.api}/login`, registration);
   }
