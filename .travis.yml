@@ -3,5 +3,6 @@ node_js:
   - '10'
 
 script:
+  - ng lint
   - npm run test-headless
   - npm run build

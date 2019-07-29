@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-
+import { Type } from '@angular/core';
 import { AppService } from './app.service';
 
 describe('AppService', () => {
@@ -17,7 +17,7 @@ describe('AppService', () => {
     });
     appService = TestBed.get(AppService);
     httpClient = TestBed.get(HttpClient);
-    httpMock = TestBed.get(HttpTestingController);
+    httpMock = TestBed.get(HttpTestingController as Type<HttpTestingController>);
   });
 
   afterEach(() => {
