@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, BehaviorSubject, interval, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,9 +41,14 @@ export class FirebaseService {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, pass);
   }
 
+  sendEmailVerification() {
+    const user = firebase.auth().currentUser;
+    return user.sendEmailVerification();
+  }
+
   logout() {
     this.afAuth.auth.signOut().then(_ => {
-      location.reload();
+      this.router.navigate(['login']);
     });
   }
 }

@@ -77,6 +77,7 @@ describe('RegistrationComponent', () => {
     expect(component.registerForm.valid).toBeFalsy();
     component.registerForm.controls['email'].setValue('test@gmail.com');
     component.registerForm.controls['password'].setValue('testpassword123');
+    component.registerForm.controls['confirmPassword'].setValue('testpassword123');
     expect(component.registerForm.valid).toBeTruthy();
   });
 
@@ -84,6 +85,23 @@ describe('RegistrationComponent', () => {
     expect(component.registerForm.valid).toBeFalsy();
     component.registerForm.controls['email'].setValue('test@');
     component.registerForm.controls['password'].setValue('11111111');
+    component.registerForm.controls['confirmPassword'].setValue('11111111');
     expect(component.registerForm.valid).toBeFalsy();
+  });
+
+  it('registration form should not submit if password and confirmation password do not match', () => {
+    expect(component.registerForm.valid).toBeFalsy();
+    component.registerForm.controls['email'].setValue('test@');
+    component.registerForm.controls['password'].setValue('11111111');
+    component.registerForm.controls['confirmPassword'].setValue('11111112');
+    expect(component.comparePasswords(component.registerForm)).toBeFalsy();
+  });
+
+  it('registration form should submit if password and confirmation password do not match', () => {
+    expect(component.registerForm.valid).toBeFalsy();
+    component.registerForm.controls['email'].setValue('test@');
+    component.registerForm.controls['password'].setValue('11111111');
+    component.registerForm.controls['confirmPassword'].setValue('11111111');
+    expect(component.comparePasswords(component.registerForm)).toBeTruthy();
   });
 });
