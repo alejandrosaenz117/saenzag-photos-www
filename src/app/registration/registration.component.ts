@@ -4,7 +4,7 @@ import { AppService } from '../app.service';
 import { FirebaseService } from '../firebase.service';
 
 class Registration {
-  constructor(public email: string, public password: string) {}
+  constructor(public email: string, public password: string, public confirmPassword: string) {}
 }
 
 @Component({
@@ -34,23 +34,43 @@ export class RegistrationComponent implements OnInit, OnChanges {
   createForm() {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
     });
   }
 
+  comparePasswords(group: FormGroup) {
+    return group.controls.password.value !== group.controls.confirmPassword.value ? null : { notSame: true };
+  }
+
   onSubmit(registerForm) {
-    this.registrationModel = registerForm.value;
-    this.afAuth
-      .createUserWithEmailAndPassword(this.registrationModel.email, this.registrationModel.password)
-      .then(res => {
-        this.alertMessage = `Verification email sent to ${res.user.email}`;
-        this.alertType = 'success';
-        this.submitted = true;
-      })
-      .catch(error => {
-        this.alertMessage = error.message;
-        this.alertType = 'danger';
-        this.submitted = true;
-      });
+    if (this.comparePasswords(registerForm)) {
+      this.registrationModel = registerForm.value;
+      this.afAuth
+        .createUserWithEmailAndPassword(this.registrationModel.email, this.registrationModel.password)
+        .then(res => {
+          this.afAuth
+            .sendEmailVerification()
+            .then(_ => {
+              this.alertMessage = `Verification email sent to ${res.user.email}`;
+              this.alertType = 'success';
+              this.submitted = true;
+            })
+            .catch(error => {
+              this.alertMessage = `Verification email delivery failed for ${res.user.email}`;
+              this.alertType = 'danger';
+              this.submitted = true;
+            });
+        })
+        .catch(error => {
+          this.alertMessage = error.message;
+          this.alertType = 'danger';
+          this.submitted = true;
+        });
+    } else {
+      this.alertMessage = `Your password and confirmation password do not match`;
+      this.alertType = 'danger';
+      this.submitted = true;
+    }
   }
 }

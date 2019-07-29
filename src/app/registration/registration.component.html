@@ -23,6 +23,14 @@
         placeholder="Password"
         required
       />
+      <input
+        formControlName="confirmPassword"
+        type="password"
+        id="confirmPassword"
+        class="form-control"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+      />
       <input [disabled]="!registerForm.valid" type="submit" class="btn btn-success" value="Register" />
     </form>
   </div>
