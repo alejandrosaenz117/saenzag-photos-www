@@ -30,10 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(creds) {
-    this.firebaseService.signInWithEmailAndPassword(
-      creds.value.email,
-      creds.value.password
-    );
+    this.firebaseService.signInWithEmailAndPassword(creds.value.email, creds.value.password);
   }
 
   logout() {

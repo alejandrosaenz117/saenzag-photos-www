@@ -24,6 +24,7 @@ import { FamilyPortraitComponent } from './family-portrait/family-portrait.compo
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { environment } from '../environments/environment';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 const ROUTES = [
   {
@@ -86,6 +87,10 @@ const ROUTES = [
   {
     path: 'registration',
     component: RegistrationComponent
+  },
+  {
+    path: 'password-reset',
+    component: PasswordResetComponent
   }
 ];
 
@@ -103,7 +108,8 @@ const ROUTES = [
     CoupleEngagementComponent,
     FamilyPortraitComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    PasswordResetComponent
   ],
   imports: [
     BrowserModule,
