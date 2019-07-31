@@ -1,6 +1,6 @@
 # [Saenz A.G. Photography](https://www.saenzag.photos)
 
-![Heroku](https://heroku-badge.herokuapp.com/?app=blooming-reef-68251&style=flat)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=blooming-reef-68251&style=flat)
 ![TravisCI](https://travis-ci.com/Whamo12/saenzag-photos-www.svg?branch=master)
 
 ## Set up
