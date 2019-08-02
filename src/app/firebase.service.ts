@@ -46,6 +46,10 @@ export class FirebaseService {
     return user.sendEmailVerification();
   }
 
+  sendPasswordResetEmail(email) {
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
+
   logout() {
     this.afAuth.auth.signOut().then(_ => {
       this.router.navigate(['login']);
