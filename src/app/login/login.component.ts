@@ -10,7 +10,9 @@ import { FirebaseService } from '../firebase.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-
+  submitted = false;
+  alertMessage: String;
+  alertType: String;
   constructor(
     private fb: FormBuilder,
     public afAuth: AngularFireAuth,
@@ -30,7 +32,16 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(creds) {
-    this.firebaseService.signInWithEmailAndPassword(creds.value.email, creds.value.password);
+    this.firebaseService
+      .signInWithEmailAndPassword(creds.value.email, creds.value.password)
+      .then(() => {
+        this.router.navigate(['dashboard']);
+      })
+      .catch(error => {
+        this.alertMessage = error.message;
+        this.alertType = 'danger';
+        this.submitted = true;
+      });
   }
 
   logout() {

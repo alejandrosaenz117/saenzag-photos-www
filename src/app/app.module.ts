@@ -8,6 +8,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireAuthGuard, redirectUnauthorizedTo, canActivate } from '@angular/fire/auth-guard';
 import { HttpClient } from '@angular/common/http';
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
@@ -25,6 +26,9 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { environment } from '../environments/environment';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
+const redirectUnauthorizedToLogin = redirectUnauthorizedTo(['login']);
 
 const ROUTES = [
   {
@@ -91,6 +95,11 @@ const ROUTES = [
   {
     path: 'password-reset',
     component: PasswordResetComponent
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    ...canActivate(redirectUnauthorizedToLogin)
   }
 ];
 
@@ -109,7 +118,8 @@ const ROUTES = [
     FamilyPortraitComponent,
     LoginComponent,
     RegistrationComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -122,7 +132,7 @@ const ROUTES = [
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule
   ],
-  providers: [AppService, HttpClient],
+  providers: [AppService, HttpClient, AngularFireAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

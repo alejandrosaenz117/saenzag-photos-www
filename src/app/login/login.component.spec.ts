@@ -5,6 +5,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../../environments/environment';
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -17,7 +18,8 @@ describe('LoginComponent', () => {
         ReactiveFormsModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
-        RouterTestingModule
+        RouterTestingModule,
+        NgbModule
       ]
     }).compileComponents();
   }));
