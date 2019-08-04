@@ -14,27 +14,14 @@ export class FirebaseService {
     this.user.subscribe(user => {
       if (user) {
         this.userDetails = user;
-        console.log(this.userDetails);
       } else {
         this.userDetails = null;
-        console.log('no details from user');
       }
     });
   }
 
   signInWithEmailAndPassword(email, pass) {
-    this.afAuth.auth.signInWithEmailAndPassword(email, pass).catch(function(error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log('error' + error);
-    });
-    if (this.userDetails) {
-      email = this.userDetails.email;
-      console.log('hello im user' + ' ' + email);
-    } else {
-      console.log('not working');
-    }
+    return this.afAuth.auth.signInWithEmailAndPassword(email, pass);
   }
 
   createUserWithEmailAndPassword(email, pass) {
