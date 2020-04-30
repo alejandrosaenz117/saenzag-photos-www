@@ -38,7 +38,7 @@
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "helmet": "^3.21.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "newrelic": "^5.10.0",
     "ng-recaptcha": "^4.2.1",
     "nodemailer": "^6.2.1",
