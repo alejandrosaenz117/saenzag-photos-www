@@ -8,7 +8,7 @@ describe('AppService', () => {
   let appService: AppService;
   let httpClient: HttpClient;
   let httpMock: HttpTestingController;
-  const api: String = 'https://blooming-reef-68251.herokuapp.com/api';
+  const api: String = 'https://saenzagphotos.herokuapp.com/api';
 
   beforeEach(() => {
     TestBed.configureTestingModule({

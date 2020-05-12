@@ -11,7 +11,7 @@ export class AppService {
 
   constructor(private http: HttpClient) { }
 
-  api = 'https://blooming-reef-68251.herokuapp.com/api';
+  api = 'https://saenzagphotos.herokuapp.com/api';
 
   getLandscapeGallery(): Observable<String[]> {
     return this.http.get<String[]>(`${this.api}/gallery_landscape`)

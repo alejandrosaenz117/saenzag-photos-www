@@ -1,24 +1,27 @@
 # [Saenz A.G. Photography](https://www.saenzag.photos)
 
-![Heroku](https://pyheroku-badge.herokuapp.com/?app=blooming-reef-68251&style=flat)
+![Heroku](https://pyheroku-badge.herokuapp.com/?app=saenzagphotos&style=flat)
 ![TravisCI](https://travis-ci.com/Whamo12/saenzag-photos-www.svg?branch=master)
 
 ## Set up
 
 Install the latest version of [Node](https://nodejs.org/en/)
-* `brew install node`
+
+- `brew install node`
 
 Install [Angular CLI](https://github.com/angular/angular-cli)
-*  `npm install -g @angular/cli`
+
+- `npm install -g @angular/cli`
 
 Install the project dependencies
-* `npm i`
+
+- `npm i`
 
 ## Server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/` for dev and `http://localhost:3000/` for prod. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/` for dev and `http://localhost:5000/` for prod. The app will automatically reload if you change any of the source files.
 
-##### Please note:  config.js is empty!  Emails will not work!
+##### Please note: config.js is empty! Emails will not work!
 
 ## Code scaffolding
 
